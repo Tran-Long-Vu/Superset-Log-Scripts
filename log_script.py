@@ -9,7 +9,6 @@ from pathlib import Path
 
 
 class Extractor():
-    
     def __init__(self) -> None:
         self.path_to_json = './json_logs'
         self.values_df_rev = self.read_json() 
