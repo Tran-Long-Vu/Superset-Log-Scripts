@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import json
 import numpy as np
 import glob
 import re
@@ -62,7 +63,6 @@ class Extractor():
         event_data_df = pd.DataFrame(log_segments, columns=['Log String'])
         event_data_df.index.name = 'Index'  
         event_data_log_string = event_data_df['Log String']
-
         return event_data_log_string  
     
     def get_args(self,log):
@@ -74,25 +74,27 @@ class Extractor():
             arg_match = re.search(r'arg:\s*(\{.*?\})', log)
             if arg_match:
                 args_string = arg_match.group(1)
-                args_dict = ast.literal_eval(args_string)
+                args_dict = ast.literal_eval(args_string) ##
                 df = pd.json_normalize(args_dict)
                 return df  
             else:
-                return pd.DataFrame({'sn': ['Not Found'],
-                                    'user_id': ['Not Found'],
-                                    'token': ['Not Found'],
-                                    'time_millis': ['Not Found'], 
-                                    'encrypted_str': ['Not Found'], 
-                                    'time_query_latest': ['Not Found'], 
-                                    'datetime': ['Not Found']})
+                pass
+                # return pd.DataFrame({'sn': ['Not Found'],
+                #                     'user_id': ['Not Found'],
+                #                     'token': ['Not Found'],
+                #                     'time_millis': ['Not Found'], 
+                #                     'encrypted_str': ['Not Found'], 
+                #                     'time_query_latest': ['Not Found'], 
+                #                     'datetime': ['Not Found']})
         else:
-            return pd.DataFrame({'sn': ['Not Found'],
-                                'user_id': ['Not Found'],
-                                'token': ['Not Found'], 
-                                'time_millis': ['Not Found'],
-                                'encrypted_str': ['Not Found'],
-                                'time_query_latest': ['Not Found'], 
-                                'datetime': ['Not Found']})
+            # return pd.DataFrame({'sn': ['Not Found'],
+            #                     'user_id': ['Not Found'],
+            #                     'token': ['Not Found'], 
+            #                     'time_millis': ['Not Found'],
+            #                     'encrypted_str': ['Not Found'],
+            #                     'time_query_latest': ['Not Found'], 
+            #                     'datetime': ['Not Found']})
+            pass
         
         
     def fetch_args(self):
@@ -101,12 +103,14 @@ class Extractor():
         output: dataFrame of all event args
         '''
         args_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding args"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding args"):
+            log = str(log)
             if isinstance(log, list):
                 log = log[0]
             args_df = self.get_args(log)
-            args_dfs.append(args_df)
+            args_dfs.append(args_df) # Null error
         final_args_df = pd.concat(args_dfs, ignore_index=True)
+        
         return(final_args_df)
     
     def get_request_event_list(self,log):
@@ -121,15 +125,17 @@ class Extractor():
                 df = pd.json_normalize(request_dict)
                 return df  
             else:
-                return pd.DataFrame({'sn': ['Not Found'],
-                                    'startTime': ['Not Found'],
-                                    'endTime': ['Not Found'],
-                                    })
+                # return pd.DataFrame({'sn': ['Not Found'],
+                #                     'startTime': ['Not Found'],
+                #                     'endTime': ['Not Found'],
+                #                     })
+                pass
         else:
-            return pd.DataFrame({'sn': ['Not Found'],
-                        'startTime': ['Not Found'],
-                        'endTime': ['Not Found'],
-                        })
+            # return pd.DataFrame({'sn': ['Not Found'],
+            #             'startTime': ['Not Found'],
+            #             'endTime': ['Not Found'],
+            #             })
+            pass
 
         
     def fetch_request_event_list(self):
@@ -137,7 +143,7 @@ class Extractor():
         
         '''
         request_event_list_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding requests"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding requests"):
             if isinstance(log, list):
                 log = log[0]  
             req_df = self.get_request_event_list(log)
@@ -157,11 +163,13 @@ class Extractor():
                 delay_alarm_event_string = delay_alarm_event_match.group(1) 
                 return pd.DataFrame({'DelayAlarm': [delay_alarm_event_string]})
             else:
-                return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                                    })
+                pass
+                #return pd.DataFrame({'DelayAlarm': ['Not Found'],
+                                    #})
         else:
-            return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                        })
+            pass
+            # return pd.DataFrame({'DelayAlarm': ['Not Found'],
+                        #})
         
         
     
@@ -172,7 +180,7 @@ class Extractor():
         
         '''
         delay_alarm_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding delay alarm"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding delay alarm"):
             if isinstance(log, list):
                 log = log[0] 
             delay_alarm_event_df = self.get_delay_alarm(log)
@@ -190,18 +198,18 @@ class Extractor():
                 time_query_event_string = time_query_event_match.group(1) 
                 return pd.DataFrame({'TimeQueryEvent': [time_query_event_string]})
             else:
-                return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
-                                    })
+                pass
         else:
-            return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
-                        })
+            pass
+            # return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
+            #             })
 
     def fetch_time_query_event(self):
         ''' 
         
         '''
         time_query_event_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time query event"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time query event"):
             if isinstance(log, list):
                 log = log[0]  
             time_query_event_df = self.get_time_query_event(log)
@@ -219,17 +227,19 @@ class Extractor():
                 time_time_process_home_face_string = time_time_process_home_face_match.group(1)
                 return pd.DataFrame({'TimeHomeFace': [time_time_process_home_face_string]})
             else:
-                return pd.DataFrame({'TimeHomeFace': ['Not Found'],
-                                    })
+                pass
+                # return pd.DataFrame({'TimeHomeFace': ['Not Found'],
+                #                     })
         else:
-            return pd.DataFrame({'TimeHomeFace': ['Not Found'],
-                        })
+            pass
+            # return pd.DataFrame({'TimeHomeFace': ['Not Found'],
+            #             })
         
     def fetch_time_process_home_face(self):
         '''  
         '''
         time_process_home_face_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time process home face"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time process home face"):
             if isinstance(log, list):
                 log = log[0]  
             time_process_home_face_df = self.get_time_process_home_face(log)
@@ -249,13 +259,15 @@ class Extractor():
                 df = pd.DataFrame({'AllTimeWorker': [all_time_worker_string]})
                 return df
             else:
-                return pd.DataFrame({
-                        'AllTimeWorker': ['Not Found'],
-                        })    
+                pass
+                # return pd.DataFrame({
+                #         'AllTimeWorker': ['Not Found'],
+                #         })    
         else:
-            return pd.DataFrame({
-                        'AllTimeWorker': ['Not Found'],
-                        })
+            pass
+            # return pd.DataFrame({
+            #             'AllTimeWorker': ['Not Found'],
+            #             })
         
         
     
@@ -265,7 +277,7 @@ class Extractor():
         
         '''
         all_time_worker_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding all time worker"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding all time worker"):
             if isinstance(log, list):
                 log = log[0]  
 
@@ -290,43 +302,45 @@ class Extractor():
                     )
                     return df
                     
-                else:  
-                    return pd.DataFrame({
-                            'SerialNumber': ['Not Found'],
-                            'AlarmTotal': ['Not Found'],
+                else: 
+                    pass 
+                    # return pd.DataFrame({
+                    #         'SerialNumber': ['Not Found'],
+                    #         'AlarmTotal': ['Not Found'],
                             
-                            'AlarmEvent': ['Not Found'],
-                            'AlarmId': ['Not Found'],
-                            'AlarmMsg': ['Not Found'],
-                            'AlarmTime': ['Not Found'],
-                            'Channel': ['Not Found'],
+                    #         'AlarmEvent': ['Not Found'],
+                    #         'AlarmId': ['Not Found'],
+                    #         'AlarmMsg': ['Not Found'],
+                    #         'AlarmTime': ['Not Found'],
+                    #         'Channel': ['Not Found'],
                             
-                            'PicInfo.ObjName': ['Not Found'],
-                            'PicInfo.ObjSize': ['Not Found'],
-                            'PicInfo.StorageBucket': ['Not Found'],
-                            'VideoInfo.VideoLength': ['Not Found'],
-                            })    
+                    #         'PicInfo.ObjName': ['Not Found'],
+                    #         'PicInfo.ObjSize': ['Not Found'],
+                    #         'PicInfo.StorageBucket': ['Not Found'],
+                    #         'VideoInfo.VideoLength': ['Not Found'],
+                    #         })    
         else:
-            return pd.DataFrame({
-                        'SerialNumber': ['Not Found'],
-                        'AlarmTotal': ['Not Found'],
+            pass
+            # return pd.DataFrame({
+            #             'SerialNumber': ['Not Found'],
+            #             'AlarmTotal': ['Not Found'],
                         
-                        'AlarmEvent': ['Not Found'],
-                        'AlarmId': ['Not Found'],
-                        'AlarmMsg': ['Not Found'],
-                        'AlarmTime': ['Not Found'],
-                        'Channel': ['Not Found'],
+            #             'AlarmEvent': ['Not Found'],
+            #             'AlarmId': ['Not Found'],
+            #             'AlarmMsg': ['Not Found'],
+            #             'AlarmTime': ['Not Found'],
+            #             'Channel': ['Not Found'],
                         
-                        'PicInfo.ObjName': ['Not Found'],
-                        'PicInfo.ObjSize': ['Not Found'],
-                        'PicInfo.StorageBucket': ['Not Found'],
-                        'VideoInfo.VideoLength': ['Not Found'],
-                        })
+            #             'PicInfo.ObjName': ['Not Found'],
+            #             'PicInfo.ObjSize': ['Not Found'],
+            #             'PicInfo.StorageBucket': ['Not Found'],
+            #             'VideoInfo.VideoLength': ['Not Found'],
+            #             })
         
     
     def fetch_response_alarm(self):
         response_event_dfs = []
-        for log in tqdm.tqdm(enumerate(self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding alarm response"):
+        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding alarm response"):
             if isinstance(log, list):
                 log = log[0] 
             response_event_df = self.get_response_alarm(log)
@@ -370,7 +384,7 @@ class Extractor():
 if __name__ == '__main__':   
     print('Extracting')
     extractor = Extractor()
-    df_result ,  alarm_df = extractor.fetch_all() 
+    df_result , alarm_df = extractor.fetch_all() 
     
     print(df_result)
     print(alarm_df)
