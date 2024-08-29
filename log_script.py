@@ -316,7 +316,8 @@ class Extractor():
                     if df.empty:
                         return dummy_df   
                     else:
-                        return df
+                        df = df.fillna('Not Found')
+                        return df # 
                 else: 
                     return dummy_df  
         else:
@@ -331,7 +332,7 @@ class Extractor():
             response_event_df = self.get_response_alarm(log)
             response_event_dfs.append(response_event_df)
         final_response_event_df = pd.concat(response_event_dfs, ignore_index=True)
-        final_response_event_df.dropna()
+        final_response_event_df.fillna('Not Found')
         return final_response_event_df
 
     
@@ -355,6 +356,9 @@ class Extractor():
                         ],
                         # ignore_index=True,
                         axis=1)
+        alarm_df = alarm_df.fillna('Not Found')
+        alarm_df = alarm_df.drop('AlarmMsg',
+                                 axis = 1)
         return df_result , alarm_df
     
 
@@ -369,7 +373,7 @@ if __name__ == '__main__':
     print(df_result)
     print(alarm_df)
     
-    #df_result.to_csv('./output_csv/event_log_data.csv')
+    df_result.to_csv('./output_csv/event_log_data.csv')
     alarm_df.to_csv('./output_csv/alarm_data.csv')
     print('Data converted to CSV.')
     pass
