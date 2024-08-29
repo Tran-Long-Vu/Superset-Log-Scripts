@@ -24,8 +24,10 @@ class Extractor():
         temp_df = pd.DataFrame()
         json_pattern = os.path.join(self.path_to_json,'*.json')
         file_list = glob.glob(json_pattern)
+        print(str(len(file_list)))
         dfs = [] 
         for file in tqdm.tqdm(enumerate(file_list), total=len(file_list), desc="Finding files"):
+            
             data = pd.read_json(file[1])
             dfs.append(data) 
         temp_df = pd.concat(dfs) 
@@ -78,23 +80,23 @@ class Extractor():
                 df = pd.json_normalize(args_dict)
                 return df  
             else:
-                pass
-                # return pd.DataFrame({'sn': ['Not Found'],
-                #                     'user_id': ['Not Found'],
-                #                     'token': ['Not Found'],
-                #                     'time_millis': ['Not Found'], 
-                #                     'encrypted_str': ['Not Found'], 
-                #                     'time_query_latest': ['Not Found'], 
-                #                     'datetime': ['Not Found']})
+                
+                return pd.DataFrame({'sn': ['Not Found'],
+                                    'user_id': ['Not Found'],
+                                    'token': ['Not Found'],
+                                    'time_millis': ['Not Found'], 
+                                    'encrypted_str': ['Not Found'], 
+                                    'time_query_latest': ['Not Found'], 
+                                    'datetime': ['Not Found']})
         else:
-            # return pd.DataFrame({'sn': ['Not Found'],
-            #                     'user_id': ['Not Found'],
-            #                     'token': ['Not Found'], 
-            #                     'time_millis': ['Not Found'],
-            #                     'encrypted_str': ['Not Found'],
-            #                     'time_query_latest': ['Not Found'], 
-            #                     'datetime': ['Not Found']})
-            pass
+            return pd.DataFrame({'sn': ['Not Found'],
+                                'user_id': ['Not Found'],
+                                'token': ['Not Found'], 
+                                'time_millis': ['Not Found'],
+                                'encrypted_str': ['Not Found'],
+                                'time_query_latest': ['Not Found'], 
+                                'datetime': ['Not Found']})
+            
         
         
     def fetch_args(self):
@@ -125,17 +127,17 @@ class Extractor():
                 df = pd.json_normalize(request_dict)
                 return df  
             else:
-                # return pd.DataFrame({'sn': ['Not Found'],
-                #                     'startTime': ['Not Found'],
-                #                     'endTime': ['Not Found'],
-                #                     })
-                pass
+                return pd.DataFrame({'sn': ['Not Found'],
+                                    'startTime': ['Not Found'],
+                                    'endTime': ['Not Found'],
+                                    })
+                
         else:
-            # return pd.DataFrame({'sn': ['Not Found'],
-            #             'startTime': ['Not Found'],
-            #             'endTime': ['Not Found'],
-            #             })
-            pass
+            return pd.DataFrame({'sn': ['Not Found'],
+                        'startTime': ['Not Found'],
+                        'endTime': ['Not Found'],
+                        })
+            
 
         
     def fetch_request_event_list(self):
@@ -163,13 +165,11 @@ class Extractor():
                 delay_alarm_event_string = delay_alarm_event_match.group(1) 
                 return pd.DataFrame({'DelayAlarm': [delay_alarm_event_string]})
             else:
-                pass
-                #return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                                    #})
+                return pd.DataFrame({'DelayAlarm': ['Not Found'],
+                                    })
         else:
-            pass
-            # return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                        #})
+            return pd.DataFrame({'DelayAlarm': ['Not Found'],
+                        })
         
         
     
@@ -198,11 +198,11 @@ class Extractor():
                 time_query_event_string = time_query_event_match.group(1) 
                 return pd.DataFrame({'TimeQueryEvent': [time_query_event_string]})
             else:
-                pass
+                return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
+                        })
         else:
-            pass
-            # return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
-            #             })
+            return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
+                        })
 
     def fetch_time_query_event(self):
         ''' 
@@ -227,13 +227,11 @@ class Extractor():
                 time_time_process_home_face_string = time_time_process_home_face_match.group(1)
                 return pd.DataFrame({'TimeHomeFace': [time_time_process_home_face_string]})
             else:
-                pass
-                # return pd.DataFrame({'TimeHomeFace': ['Not Found'],
-                #                     })
+                return pd.DataFrame({'TimeHomeFace': ['Not Found'],
+                                    })
         else:
-            pass
-            # return pd.DataFrame({'TimeHomeFace': ['Not Found'],
-            #             })
+            return pd.DataFrame({'TimeHomeFace': ['Not Found'],
+                        })
         
     def fetch_time_process_home_face(self):
         '''  
@@ -260,14 +258,14 @@ class Extractor():
                 return df
             else:
                 pass
-                # return pd.DataFrame({
-                #         'AllTimeWorker': ['Not Found'],
-                #         })    
+                return pd.DataFrame({
+                        'AllTimeWorker': ['Not Found'],
+                        })    
         else:
             pass
-            # return pd.DataFrame({
-            #             'AllTimeWorker': ['Not Found'],
-            #             })
+            return pd.DataFrame({
+                        'AllTimeWorker': ['Not Found'],
+                        })
         
         
     
@@ -298,44 +296,45 @@ class Extractor():
                     response_dict = ast.literal_eval(response_string)
                     df = pd.json_normalize(
                         response_dict, 
-                        record_path=  ['AlarmArray']                    
+                        record_path=  ['AlarmArray'],
+                        meta = [['SerialNumber'],
+                                ['AlarmTotal']]                
                     )
                     return df
-                    
                 else: 
-                    pass 
-                    # return pd.DataFrame({
-                    #         'SerialNumber': ['Not Found'],
-                    #         'AlarmTotal': ['Not Found'],
+                    return pd.DataFrame({
+                            'SerialNumber': ['Not Found'],
+                            'AlarmTotal': ['Not Found'],
                             
-                    #         'AlarmEvent': ['Not Found'],
-                    #         'AlarmId': ['Not Found'],
-                    #         'AlarmMsg': ['Not Found'],
-                    #         'AlarmTime': ['Not Found'],
-                    #         'Channel': ['Not Found'],
+                            'AlarmEvent': ['Not Found'],
+                            'AlarmId': ['Not Found'],
+                            'AlarmMsg': ['Not Found'],
+                            'AlarmTime': ['Not Found'],
+                            'Channel': ['Not Found'],
                             
-                    #         'PicInfo.ObjName': ['Not Found'],
-                    #         'PicInfo.ObjSize': ['Not Found'],
-                    #         'PicInfo.StorageBucket': ['Not Found'],
-                    #         'VideoInfo.VideoLength': ['Not Found'],
-                    #         })    
+                            'PicInfo.ObjName': ['Not Found'],
+                            'PicInfo.ObjSize': ['Not Found'],
+                            'PicInfo.StorageBucket': ['Not Found'],
+                            'VideoInfo.VideoLength': ['Not Found'],
+                            'PicErr': ['Not Found'],
+                            })    
         else:
-            pass
-            # return pd.DataFrame({
-            #             'SerialNumber': ['Not Found'],
-            #             'AlarmTotal': ['Not Found'],
+            return pd.DataFrame({
+                        'SerialNumber': ['Not Found'],
+                        'AlarmTotal': ['Not Found'],
                         
-            #             'AlarmEvent': ['Not Found'],
-            #             'AlarmId': ['Not Found'],
-            #             'AlarmMsg': ['Not Found'],
-            #             'AlarmTime': ['Not Found'],
-            #             'Channel': ['Not Found'],
+                        'AlarmEvent': ['Not Found'],
+                        'AlarmId': ['Not Found'],
+                        'AlarmMsg': ['Not Found'],
+                        'AlarmTime': ['Not Found'],
+                        'Channel': ['Not Found'],
                         
-            #             'PicInfo.ObjName': ['Not Found'],
-            #             'PicInfo.ObjSize': ['Not Found'],
-            #             'PicInfo.StorageBucket': ['Not Found'],
-            #             'VideoInfo.VideoLength': ['Not Found'],
-            #             })
+                        'PicInfo.ObjName': ['Not Found'],
+                        'PicInfo.ObjSize': ['Not Found'],
+                        'PicInfo.StorageBucket': ['Not Found'],
+                        'VideoInfo.VideoLength': ['Not Found'],
+                        'PicErr': ['Not Found'],
+                        })
         
     
     def fetch_response_alarm(self):
@@ -371,11 +370,6 @@ class Extractor():
                         ],
                         # ignore_index=True,
                         axis=1)
-        
-        
-        
-        
-        
         return df_result , alarm_df
 
 
