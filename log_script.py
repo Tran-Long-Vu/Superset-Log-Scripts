@@ -24,7 +24,6 @@ class Extractor():
         temp_df = pd.DataFrame()
         json_pattern = os.path.join(self.path_to_json,'*.json')
         file_list = glob.glob(json_pattern)
-        print(str(len(file_list)))
         dfs = [] 
         for file in tqdm.tqdm(enumerate(file_list), total=len(file_list), desc="Finding files"):
             
@@ -72,33 +71,29 @@ class Extractor():
         input: log strings in JSON
         output: arg data fields as dataFrame for single data point
         '''
-        if 'arg: {' in log:
-            arg_match = re.search(r'arg:\s*(\{.*?\})', log)
-            if arg_match:
-                args_string = arg_match.group(1)
-                args_dict = ast.literal_eval(args_string) ##
-                df = pd.json_normalize(args_dict)
-                return df  
-            else:
-                
-                return pd.DataFrame({'sn': ['Not Found'],
+        
+        dummy_df = pd.DataFrame({'sn': ['Not Found'],
                                     'user_id': ['Not Found'],
                                     'token': ['Not Found'],
                                     'time_millis': ['Not Found'], 
                                     'encrypted_str': ['Not Found'], 
                                     'time_query_latest': ['Not Found'], 
                                     'datetime': ['Not Found']})
+        if 'arg: {' in log:
+            arg_match = re.search(r'arg:\s*(\{.*?\})', log)
+            if arg_match:
+                args_string = arg_match.group(1)
+                args_dict = ast.literal_eval(args_string) ##
+                df = pd.json_normalize(args_dict)
+                if df.empty:
+                    return dummy_df
+                else: 
+                    return df  
+            else:
+                return dummy_df
         else:
-            return pd.DataFrame({'sn': ['Not Found'],
-                                'user_id': ['Not Found'],
-                                'token': ['Not Found'], 
-                                'time_millis': ['Not Found'],
-                                'encrypted_str': ['Not Found'],
-                                'time_query_latest': ['Not Found'], 
-                                'datetime': ['Not Found']})
+            return dummy_df
             
-        
-        
     def fetch_args(self):
         '''  
         input: 
@@ -119,24 +114,25 @@ class Extractor():
         '''  
         
         '''
+        dummy_df = pd.DataFrame({'sn': ['Not Found'],
+                                    'startTime': ['Not Found'],
+                                    'endTime': ['Not Found'],
+                                    })
         if 'Request get event list' in log:
             request_match = re.search(r'Request get event list: (.*?)}', log) 
             if request_match:
                 request_string = request_match.group(1) + '}' 
                 request_dict = ast.literal_eval(request_string)
                 df = pd.json_normalize(request_dict)
-                return df  
+                if df.empty:
+                    return dummy_df
+                else: 
+                    return df  
             else:
-                return pd.DataFrame({'sn': ['Not Found'],
-                                    'startTime': ['Not Found'],
-                                    'endTime': ['Not Found'],
-                                    })
+                return dummy_df
                 
         else:
-            return pd.DataFrame({'sn': ['Not Found'],
-                        'startTime': ['Not Found'],
-                        'endTime': ['Not Found'],
-                        })
+            return dummy_df
             
 
         
@@ -286,25 +282,9 @@ class Extractor():
         
         
     def get_response_alarm(self,log):
-        if 'Response get event list: ' in log: 
-                response_match = re.search(r" 'data': (.*?)'IsFinished': '1'}}" , log)
-                if response_match:
-                    response_string = response_match.group(1) + '}' 
-                    response_string = response_string.replace("'", '"')
-                    response_string = re.sub(r'"recface":\s*"({.*?})"', r'"recface": \1', response_string)
-                    response_string = re.sub(r',\s*([\]})])', r'\1', response_string)
-                    response_dict = ast.literal_eval(response_string)
-                    df = pd.json_normalize(
-                        response_dict, 
-                        record_path=  ['AlarmArray'],
-                        meta = [['SerialNumber'],
-                                ['AlarmTotal']]                
-                    )
-                    return df
-                else: 
-                    return pd.DataFrame({
+        dummy_df = pd.DataFrame({
                             'SerialNumber': ['Not Found'],
-                            'AlarmTotal': ['Not Found'],
+                            #'AlarmTotal': ['Not Found'],
                             
                             'AlarmEvent': ['Not Found'],
                             'AlarmId': ['Not Found'],
@@ -318,23 +298,29 @@ class Extractor():
                             'VideoInfo.VideoLength': ['Not Found'],
                             'PicErr': ['Not Found'],
                             })    
+        if 'Response get event list: ' in log: 
+                response_match = re.search(r" 'data': (.*?)'IsFinished': '1'}}" , log)
+                if response_match:
+                    response_string = response_match.group(1) + '}' 
+                    response_string = response_string.replace("'", '"')
+                    response_string = re.sub(r'"recface":\s*"({.*?})"', r'"recface": \1', response_string)
+                    response_string = re.sub(r',\s*([\]})])', r'\1', response_string)
+                    response_dict = ast.literal_eval(response_string)
+                    df = pd.json_normalize(
+                        response_dict, 
+                        record_path=  ['AlarmArray'],
+                        meta = ['SerialNumber'],
+                                             
+                    )
+                    #### if not empty:
+                    if df.empty:
+                        return dummy_df   
+                    else:
+                        return df
+                else: 
+                    return dummy_df  
         else:
-            return pd.DataFrame({
-                        'SerialNumber': ['Not Found'],
-                        'AlarmTotal': ['Not Found'],
-                        
-                        'AlarmEvent': ['Not Found'],
-                        'AlarmId': ['Not Found'],
-                        'AlarmMsg': ['Not Found'],
-                        'AlarmTime': ['Not Found'],
-                        'Channel': ['Not Found'],
-                        
-                        'PicInfo.ObjName': ['Not Found'],
-                        'PicInfo.ObjSize': ['Not Found'],
-                        'PicInfo.StorageBucket': ['Not Found'],
-                        'VideoInfo.VideoLength': ['Not Found'],
-                        'PicErr': ['Not Found'],
-                        })
+            return dummy_df
         
     
     def fetch_response_alarm(self):
@@ -345,13 +331,12 @@ class Extractor():
             response_event_df = self.get_response_alarm(log)
             response_event_dfs.append(response_event_df)
         final_response_event_df = pd.concat(response_event_dfs, ignore_index=True)
+        final_response_event_df.dropna()
         return final_response_event_df
 
     
     def fetch_all(self):
         ''' 
-        
-        
         '''
         df_result = pd.concat(
                         [
@@ -371,6 +356,7 @@ class Extractor():
                         # ignore_index=True,
                         axis=1)
         return df_result , alarm_df
+    
 
 
 
@@ -383,9 +369,8 @@ if __name__ == '__main__':
     print(df_result)
     print(alarm_df)
     
-    df_result.to_csv('./output_csv/event_log_data.csv')
+    #df_result.to_csv('./output_csv/event_log_data.csv')
     alarm_df.to_csv('./output_csv/alarm_data.csv')
-    
     print('Data converted to CSV.')
     pass
 
