@@ -66,19 +66,19 @@ class SqlLoader():
             df = df.rename(columns={
             'sn': 'sn',
             'user_id': 'user_id',
-            'token': 'token',
-            'time_millis': 'time_millis',
-            'encrypted_str': 'encrypted_str',
+            #'token': 'token',
+            #'time_millis': 'time_millis',
+            #'encrypted_str': 'encrypted_str',
             'time_query_latest': 'time_query_latest',
             'datetime': 'date_time',
-            'startTime': 'start_time',
+            #'startTime': 'start_time',
             'TimeQueryEvent': 'time_query_event',
             'TimeHomeFace': 'time_home_face',
             'AllTimeWorker': 'all_time_worker'
         })
             df.drop('Unnamed: 0', axis=1,inplace=True)
             df.drop('sn.1', axis=1,inplace=True)
-            df.drop('endTime', axis=1,inplace=True)
+            #df.drop('endTime', axis=1,inplace=True)
             df = df.replace('Not Found', pd.NA).dropna()
             return df
 
@@ -98,9 +98,10 @@ class SqlLoader():
         'DelayAlarm': 'delay_alarm'
                     })
         df.drop('Unnamed: 0', axis=1,inplace=True)
-        df = df.drop(columns=['VideoInfo.VideoLength'])
-        df = df.drop(columns=['PicErr'])
-        df = df.replace('Not Found', pd.NA).dropna()
+        df.drop('AlarmMsg', axis=1,inplace=True)
+        df.drop('video_info_video_length', axis=1,inplace=True)
+        
+        # df = df.replace('Not Found', pd.NA).dropna()
         
         return df
 
@@ -111,8 +112,9 @@ if __name__ == '__main__':
     loader = SqlLoader()
     event_df = loader.event_data
     alarm_df = loader.alarm_df
-    # print(event_df)
-    # print(alarm_df)
+    alarm_df = alarm_df.dropna(subset=['alarm_time'])
+    print(event_df)
+    print(alarm_df)
     loader.push_event_data_to_db(event_df,'home_face_camera_event_log_data')
     loader.push_event_data_to_db(alarm_df,'home_face_camera_alarm_data')
     loader.disconnect_database()
