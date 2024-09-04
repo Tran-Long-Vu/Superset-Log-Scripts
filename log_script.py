@@ -7,7 +7,7 @@ import re
 import tqdm as tqdm
 import ast
 from pathlib import Path
-
+from sql_loader import SqlLoader
 
 class Extractor():
     def __init__(self) -> None:
@@ -345,6 +345,7 @@ class Extractor():
                         self.fetch_request_event_list(),
                         self.fetch_time_query_event(),
                         self.fetch_time_process_home_face(),
+                        self.fetch_all_time_worker()
                         ],
                         # ignore_index=True,
                         axis=1)
@@ -360,19 +361,15 @@ class Extractor():
         alarm_df = alarm_df.drop('AlarmMsg',
                                  axis = 1)
         return df_result , alarm_df
-    
-
-
-
 
 if __name__ == '__main__':   
     print('Extracting')
     extractor = Extractor()
     df_result , alarm_df = extractor.fetch_all() 
-    
+    #df_result = extractor.postprocess_events(df_result)
+    #alarm_df = extractor.postprocess_alarms(alarm_df)
     print(df_result)
     print(alarm_df)
-    
     df_result.to_csv('./output_csv/event_log_data.csv')
     alarm_df.to_csv('./output_csv/alarm_data.csv')
     print('Data converted to CSV.')
