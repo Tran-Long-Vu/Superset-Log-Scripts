@@ -308,13 +308,14 @@ class Extractor():
         ''' 
         '''
         
-        
-        response_alarm = self.fetch_response_alarm(),  
-        delay_alarm = self.fetch_delay_alarm() 
-           
+
+        response_alarm = self.fetch_response_alarm()
+        delay_alarm = self.fetch_delay_alarm()       
         n = len(response_alarm)
         response_alarm_subset = response_alarm.head(n)  
         delay_alarm_subset = delay_alarm.head(n)    
+        
+        
         
         df_result = pd.concat(
                         [
@@ -331,7 +332,13 @@ class Extractor():
             [response_alarm_subset, delay_alarm_subset],
             axis=1
         )
-        
+        # alarm_df = pd.concat(
+        #                 [
+        #                 self.fetch_response_alarm(),
+        #                 self.fetch_delay_alarm()
+        #                 ],
+        #                 # ignore_index=True,
+        #                 axis=1)
         
         # postprocessing
         
@@ -350,7 +357,7 @@ if __name__ == '__main__':
     print('Extracting')
     extractor = Extractor()
     df_result , alarm_df = extractor.fetch_all()
-    # bug: kernel crash 
+    # bug: kernel crash
     print(df_result)
     print(alarm_df)
     

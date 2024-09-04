@@ -12,7 +12,7 @@ conn = psycopg2.connect(
 
 cursor = conn.cursor()
 
-query = "ALTER TABLE home_face_camera_alarm_data DROP COLUMN video_info_video_length;"
+query = "DELETE FROM home_face_camera_alarm_data; DELETE FROM home_face_camera_event_log_data;"
 cursor.execute(query)
 
 conn.commit()
