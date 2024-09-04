@@ -7,7 +7,7 @@ import re
 import tqdm as tqdm
 import ast
 from pathlib import Path
-from sql_loader import SqlLoader
+# from sql_loader import SqlLoader
 
 class Extractor():
     def __init__(self) -> None:
@@ -160,13 +160,7 @@ class Extractor():
             if delay_alarm_event_match:
                 delay_alarm_event_string = delay_alarm_event_match.group(1) 
                 return pd.DataFrame({'DelayAlarm': [delay_alarm_event_string]})
-            else:
-                return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                                    })
-        else:
-            return pd.DataFrame({'DelayAlarm': ['Not Found'],
-                        })
-        
+            
         
     
     
@@ -282,22 +276,6 @@ class Extractor():
         
         
     def get_response_alarm(self,log):
-        dummy_df = pd.DataFrame({
-                            'SerialNumber': ['Not Found'],
-                            #'AlarmTotal': ['Not Found'],
-                            
-                            'AlarmEvent': ['Not Found'],
-                            'AlarmId': ['Not Found'],
-                            'AlarmMsg': ['Not Found'],
-                            'AlarmTime': ['Not Found'],
-                            'Channel': ['Not Found'],
-                            
-                            'PicInfo.ObjName': ['Not Found'],
-                            'PicInfo.ObjSize': ['Not Found'],
-                            'PicInfo.StorageBucket': ['Not Found'],
-                            'VideoInfo.VideoLength': ['Not Found'],
-                            'PicErr': ['Not Found'],
-                            })    
         if 'Response get event list: ' in log: 
                 response_match = re.search(r" 'data': (.*?)'IsFinished': '1'}}" , log)
                 if response_match:
@@ -312,16 +290,7 @@ class Extractor():
                         meta = ['SerialNumber'],
                                              
                     )
-                    #### if not empty:
-                    if df.empty:
-                        return dummy_df   
-                    else:
-                        df = df.fillna('Not Found')
-                        return df # 
-                else: 
-                    return dummy_df  
-        else:
-            return dummy_df
+                    return df
         
     
     def fetch_response_alarm(self):
@@ -332,7 +301,6 @@ class Extractor():
             response_event_df = self.get_response_alarm(log)
             response_event_dfs.append(response_event_df)
         final_response_event_df = pd.concat(response_event_dfs, ignore_index=True)
-        final_response_event_df.fillna('Not Found')
         return final_response_event_df
 
     
@@ -357,19 +325,28 @@ class Extractor():
                         ],
                         # ignore_index=True,
                         axis=1)
-        alarm_df = alarm_df.fillna('Not Found')
-        alarm_df = alarm_df.drop('AlarmMsg',
-                                 axis = 1)
+        
+        # postprocessing
+        
+        df_result = df_result.drop('token',axis = 1)
+        df_result = df_result.drop('time_millis',axis = 1)
+        df_result = df_result.drop('encrypted_str',axis = 1)
+        df_result = df_result.drop('startTime',axis = 1)
+        df_result = df_result.drop('endTime',axis = 1)
+        df_result = df_result.replace('Not Found', pd.NA).dropna() # not NA
+        
+        print('processing complete')
+
         return df_result , alarm_df
 
 if __name__ == '__main__':   
     print('Extracting')
     extractor = Extractor()
-    df_result , alarm_df = extractor.fetch_all() 
-    #df_result = extractor.postprocess_events(df_result)
-    #alarm_df = extractor.postprocess_alarms(alarm_df)
+    df_result , alarm_df = extractor.fetch_all()
+    # bug: kernel crash 
     print(df_result)
     print(alarm_df)
+    
     df_result.to_csv('./output_csv/event_log_data.csv')
     alarm_df.to_csv('./output_csv/alarm_data.csv')
     print('Data converted to CSV.')

@@ -98,8 +98,8 @@ class SqlLoader():
         'DelayAlarm': 'delay_alarm'
                     })
         df.drop('Unnamed: 0', axis=1,inplace=True)
-        df = df.drop(columns=['video_info_video_length'])
-        df = df.drop(columns=['pic_err'])
+        df = df.drop(columns=['VideoInfo.VideoLength'])
+        df = df.drop(columns=['PicErr'])
         df = df.replace('Not Found', pd.NA).dropna()
         
         return df
