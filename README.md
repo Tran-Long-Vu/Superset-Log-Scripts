@@ -6,8 +6,9 @@
 - ./
     - json_logs/
         - ./*.json
-    - output_csv/
-        - ./*.csv
+    - csv_output/
+        - /alarm_csv
+        - /event_csv
 - log_script.py
 
 - Put all json files in json_logs.

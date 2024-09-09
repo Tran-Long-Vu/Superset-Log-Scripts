@@ -7,37 +7,62 @@ import re
 import tqdm as tqdm
 import ast
 from pathlib import Path
+import resource
+
+PATH_TO_EVENT_CSV = 'output_csv/event_csv/'
+PATH_TO_ALARM_CSV = 'output_csv/alarm_csv/'
+
+
 # from sql_loader import SqlLoader
+# from sql_loader import SqlLoader
+def limit_memory(maxsize):
+    # Set the maximum memory limit (in bytes)
+    soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+    resource.setrlimit(resource.RLIMIT_AS, (maxsize, hard))
+
 
 class Extractor():
     def __init__(self) -> None:
         self.path_to_json = './json_logs'
-        self.values_df_rev = self.read_json() 
-        self.event_data_log_string = self.collect_all_events(self.values_df_rev) 
+        #self.values_df_rev = self.read_json() 
+        #self.event_data_log_string = self.collect_all_events(self.values_df_rev) 
         pass
     
-    def read_json(self):
-        '''   
-        Input: path to json file
-        Output: a Series of all logs in reverse order.
-        '''
-        temp_df = pd.DataFrame()
-        json_pattern = os.path.join(self.path_to_json,'*.json')
-        file_list = glob.glob(json_pattern)
-        dfs = [] 
-        for file in tqdm.tqdm(enumerate(file_list), total=len(file_list), desc="Finding files"):
-            
-            data = pd.read_json(file[1])
-            dfs.append(data) 
-        temp_df = pd.concat(dfs) 
-        result_column_df = temp_df['data']['result']
+    
+    def read_single_file(self, json_file): # call at bottom
+        # read json (json_path)
+        df = pd.read_json(json_file) # read data frame from json file
+        # reformat: 
+        result_column_df = df['data']['result']
         all_values = []
         for i in range(len(result_column_df)): 
-            values = temp_df['data']['result'][i][0]['values']  
+            values = df['data']['result'][i]['values']  
             all_values.extend(values)  
         values_df = pd.Series(all_values)
         values_df_rev = values_df.iloc[::-1]
         return values_df_rev
+    
+    def write_all(self, json_folder_path):
+    # iteratively read json files.
+        index = 0
+        for filename in tqdm.tqdm(os.listdir(json_folder_path), desc ="Reading json files: "):
+            if filename.endswith('.json'):  # Ensure the file is a JSON file 
+                file_path = os.path.join(json_folder_path, filename)
+                json_df = self.read_single_file(file_path)
+                event_all_df = self.collect_all_events(json_df)
+                
+                event_df , alarm_df = self.fetch_all(event_all_df)
+                alarm_df.drop('AlarmMsg', axis = 1, inplace = True)
+                # print(alarm_df.columns)
+                
+                self.write_to_csv_folder(index,
+                event_df,
+                alarm_df, 
+                PATH_TO_EVENT_CSV,
+                PATH_TO_ALARM_CSV)
+            index += 1
+        pass
+    
 
     def collect_all_events(self, series):
         '''  
@@ -46,7 +71,7 @@ class Extractor():
         '''
         start_indices = []
         end_indices = []
-        for i, value in tqdm.tqdm(enumerate(series), total=len(series), desc="Finding indices"):
+        for i, value in enumerate((series)):
             if 'Start fetch event' in str(value):
                 start_indices.append(i)
             elif '======END======' in str(value):
@@ -54,7 +79,7 @@ class Extractor():
         log_segments = []
         end_index = 0 
 
-        for start in tqdm.tqdm(start_indices, desc="Gathering log segments"):
+        for start in (start_indices):
             while end_index < len(end_indices) and end_indices[end_index] <= start:
                 end_index += 1
             if end_index < len(end_indices):
@@ -63,44 +88,108 @@ class Extractor():
                 log_segments.append(segment)
         event_data_df = pd.DataFrame(log_segments, columns=['Log String'])
         event_data_df.index.name = 'Index'  
-        event_data_log_string = event_data_df['Log String']
-        return event_data_log_string  
+        event_all_df = event_data_df['Log String']
+        return event_all_df  
+
+ 
+    def write_to_csv_folder(self, file_index,
+                        event_df,
+                        alarm_df,
+                        event_csv_path,
+                        alarm_csv_path):  
+        """
+        Write two DataFrames to specified CSV file paths in chunks.
+        Parameters:
+        - file_index (int): The index used to create the CSV file names.
+        - event_df (pd.DataFrame): DataFrame containing event data.
+        - alarm_df (pd.DataFrame): DataFrame containing alarm data.
+        - event_csv_path (str): Directory path to save the event CSV file.
+        - alarm_csv_path (str): Directory path to save the alarm CSV file.
+        - chunk_size (int): Number of rows to write at a time.
+        """
+        event_file_name = f"event_data_{file_index}.csv"
+        alarm_file_name = f"alarm_data_{file_index}.csv"
+        
+        event_file_path = os.path.join(event_csv_path, event_file_name)
+        alarm_file_path = os.path.join(alarm_csv_path, alarm_file_name)
+        
+                # Write event_df to CSV normally
+        event_df.to_csv(
+            event_file_path, 
+            mode='w',  # Use 'w' to write (overwrite) the file
+            header=True,  # Write header
+            index=False  # Do not write row index
+        )
+
+        # Write alarm_df to CSV normally
+        alarm_df.to_csv(
+            alarm_file_path, 
+            mode='w',  # Use 'w' to write (overwrite) the file
+            header=True,  # Write header
+            index=False  # Do not write row index
+        )
+
+        # Free memory by deleting DataFrames
+        del event_df
+        del alarm_df
     
-    def get_args(self,log):
+    def fetch_all(self, event_all_df):
+        ''' 
+        '''
+        
+        df_result = pd.concat(
+                        [
+                        self.fetch_args(event_all_df),
+                        self.fetch_request_event_list(event_all_df),
+                        self.fetch_time_query_event(event_all_df),
+                        self.fetch_time_process_home_face(event_all_df),
+                        self.fetch_all_time_worker(event_all_df)
+                        ],
+                        # ignore_index=True,
+                        axis=1)
+        response_alarm = self.fetch_response_alarm(event_all_df)
+        delay_alarm = self.fetch_delay_alarm(event_all_df)       
+        n = len(response_alarm)
+        response_alarm_subset = response_alarm.head(n)  
+        delay_alarm_subset = delay_alarm.head(n)    
+        
+        alarm_df = pd.concat(
+            [response_alarm_subset, delay_alarm_subset],
+            axis=1
+        )
+        #
+        
+        # print(alarm_df.columns)
+        
+        df_result = df_result.drop('token',axis = 1)
+        df_result = df_result.drop('time_millis',axis = 1)
+        df_result = df_result.drop('encrypted_str',axis = 1)
+        df_result = df_result.drop('startTime',axis = 1)
+        df_result = df_result.drop('endTime',axis = 1)
+        df_result = df_result.replace('Not Found', pd.NA).dropna() # not NA
+
+        return df_result , alarm_df
+    def get_args(self, log):
         '''  
         input: log strings in JSON
         output: arg data fields as dataFrame for single data point
         '''
-        
-        dummy_df = pd.DataFrame({'sn': ['Not Found'],
-                                    'user_id': ['Not Found'],
-                                    'token': ['Not Found'],
-                                    'time_millis': ['Not Found'], 
-                                    'encrypted_str': ['Not Found'], 
-                                    'time_query_latest': ['Not Found'], 
-                                    'datetime': ['Not Found']})
+    
         if 'arg: {' in log:
             arg_match = re.search(r'arg:\s*(\{.*?\})', log)
             if arg_match:
                 args_string = arg_match.group(1)
                 args_dict = ast.literal_eval(args_string) ##
                 df = pd.json_normalize(args_dict)
-                if df.empty:
-                    return dummy_df
-                else: 
-                    return df  
-            else:
-                return dummy_df
-        else:
-            return dummy_df
+                return df
             
-    def fetch_args(self):
+    def fetch_args(self, event_all_df):
         '''  
         input: 
         output: dataFrame of all event args
         '''
         args_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding args"):
+        for log in ((event_all_df)):
             log = str(log)
             if isinstance(log, list):
                 log = log[0]
@@ -110,48 +199,33 @@ class Extractor():
         
         return(final_args_df)
     
-    def get_request_event_list(self,log):
+    def get_request_event_list(self, log):
         '''  
-        
         '''
-        dummy_df = pd.DataFrame({'sn': ['Not Found'],
-                                    'startTime': ['Not Found'],
-                                    'endTime': ['Not Found'],
-                                    })
         if 'Request get event list' in log:
             request_match = re.search(r'Request get event list: (.*?)}', log) 
             if request_match:
                 request_string = request_match.group(1) + '}' 
                 request_dict = ast.literal_eval(request_string)
                 df = pd.json_normalize(request_dict)
-                if df.empty:
-                    return dummy_df
-                else: 
-                    return df  
-            else:
-                return dummy_df
-                
-        else:
-            return dummy_df
-            
-
-        
-    def fetch_request_event_list(self):
+                return df
+                    
+    def fetch_request_event_list(self, event_all_df):
         ''' 
         
         '''
         request_event_list_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding requests"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0]  
             req_df = self.get_request_event_list(log)
             request_event_list_dfs.append(req_df)
         final_request_event_list_df = pd.concat(request_event_list_dfs, ignore_index=True)
         return(final_request_event_list_df)
-        
+            
 
     
-    def get_delay_alarm(self,log):
+    def get_delay_alarm(self, log):
         ''' 
         
         '''
@@ -160,25 +234,23 @@ class Extractor():
             if delay_alarm_event_match:
                 delay_alarm_event_string = delay_alarm_event_match.group(1) 
                 return pd.DataFrame({'DelayAlarm': [delay_alarm_event_string]})
-            
         
-    
-    
-        
-    def fetch_delay_alarm(self):
+    def fetch_delay_alarm(self, event_all_df):
         ''' 
         
         '''
         delay_alarm_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding delay alarm"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0] 
             delay_alarm_event_df = self.get_delay_alarm(log)
             delay_alarm_dfs.append(delay_alarm_event_df) 
         final_delay_alarm_df = pd.concat(delay_alarm_dfs, ignore_index=True)
         return final_delay_alarm_df
+
+
     
-    def get_time_query_event(self,log):
+    def get_time_query_event(self, log):
         ''' 
         
         '''
@@ -194,12 +266,12 @@ class Extractor():
             return pd.DataFrame({'TimeQueryEvent': ['Not Found'],
                         })
 
-    def fetch_time_query_event(self):
+    def fetch_time_query_event(self, event_all_df):
         ''' 
         
         '''
         time_query_event_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time query event"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0]  
             time_query_event_df = self.get_time_query_event(log)
@@ -207,7 +279,7 @@ class Extractor():
         final_time_query_event_df = pd.concat(time_query_event_dfs, ignore_index=True)
         return(final_time_query_event_df)
             
-    def get_time_process_home_face(self,log):
+    def get_time_process_home_face(self, log):
         '''
          
         '''
@@ -223,11 +295,11 @@ class Extractor():
             return pd.DataFrame({'TimeHomeFace': ['Not Found'],
                         })
         
-    def fetch_time_process_home_face(self):
+    def fetch_time_process_home_face(self, event_all_df):
         '''  
         '''
         time_process_home_face_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding time process home face"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0]  
             time_process_home_face_df = self.get_time_process_home_face(log)
@@ -235,10 +307,8 @@ class Extractor():
         final_time_process_home_face_df = pd.concat(time_process_home_face_dfs, ignore_index=True)
         return final_time_process_home_face_df #df
     
-    def get_all_time_worker(self,log):
+    def get_all_time_worker(self, log):
         ''' 
-        
-        
         '''
         if 'All time worker' in log:
             all_time_worker_match = re.search(r"All time worker: (.*?) s" , log)
@@ -258,14 +328,14 @@ class Extractor():
                         })
         
         
-    
+        
 
-    def fetch_all_time_worker(self):
+    def fetch_all_time_worker(self, event_all_df):
         ''' 
         
         '''
         all_time_worker_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding all time worker"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0]  
 
@@ -275,7 +345,7 @@ class Extractor():
         return final_all_time_worker_df
         
         
-    def get_response_alarm(self,log):
+    def get_response_alarm(self, log):
         if 'Response get event list: ' in log: 
                 response_match = re.search(r" 'data': (.*?)'IsFinished': '1'}}" , log)
                 if response_match:
@@ -288,14 +358,13 @@ class Extractor():
                         response_dict, 
                         record_path=  ['AlarmArray'],
                         meta = ['SerialNumber'],
-                                             
                     )
                     return df
         
-    
-    def fetch_response_alarm(self):
+
+    def fetch_response_alarm(self, event_all_df):
         response_event_dfs = []
-        for log in tqdm.tqdm((self.event_data_log_string), total=len(self.event_data_log_string), desc="Finding alarm response"):
+        for log in ((event_all_df)):
             if isinstance(log, list):
                 log = log[0] 
             response_event_df = self.get_response_alarm(log)
@@ -304,66 +373,22 @@ class Extractor():
         return final_response_event_df
 
     
-    def fetch_all(self):
-        ''' 
-        '''
-        
+    
 
-        response_alarm = self.fetch_response_alarm()
-        delay_alarm = self.fetch_delay_alarm()       
-        n = len(response_alarm)
-        response_alarm_subset = response_alarm.head(n)  
-        delay_alarm_subset = delay_alarm.head(n)    
-        
-        
-        
-        df_result = pd.concat(
-                        [
-                        self.fetch_args(),
-                        self.fetch_request_event_list(),
-                        self.fetch_time_query_event(),
-                        self.fetch_time_process_home_face(),
-                        self.fetch_all_time_worker()
-                        ],
-                        # ignore_index=True,
-                        axis=1)
-        
-        alarm_df = pd.concat(
-            [response_alarm_subset, delay_alarm_subset],
-            axis=1
-        )
-        # alarm_df = pd.concat(
-        #                 [
-        #                 self.fetch_response_alarm(),
-        #                 self.fetch_delay_alarm()
-        #                 ],
-        #                 # ignore_index=True,
-        #                 axis=1)
-        
-        # postprocessing
-        
-        df_result = df_result.drop('token',axis = 1)
-        df_result = df_result.drop('time_millis',axis = 1)
-        df_result = df_result.drop('encrypted_str',axis = 1)
-        df_result = df_result.drop('startTime',axis = 1)
-        df_result = df_result.drop('endTime',axis = 1)
-        df_result = df_result.replace('Not Found', pd.NA).dropna() # not NA
-        
-        print('processing complete')
 
-        return df_result , alarm_df
+
 
 if __name__ == '__main__':   
-    print('Extracting')
-    extractor = Extractor()
-    df_result , alarm_df = extractor.fetch_all()
-    # bug: kernel crash
-    print(df_result)
-    print(alarm_df)
-    
-    df_result.to_csv('./output_csv/event_log_data.csv')
-    alarm_df.to_csv('./output_csv/alarm_data.csv')
-    print('Data converted to CSV.')
-    pass
+    limit_memory(12 * 1024 * 1024 * 1024)  # Limit to 8 GB 
 
+    extractor = Extractor()
+    extractor.write_all('json_logs')
+    # # bug: kernel crash
+    # print(df_result)
+    # print(alarm_df)
+    
+    # df_result.to_csv('./output_csv/event_log_data.csv')
+    # alarm_df.to_csv('./output_csv/alarm_data.csv')
+    # print('Data converted to CSV.')
+    pass
 

@@ -84,6 +84,39 @@ ADD COLUMN serial_number VARCHAR;
 
 '''
 
+DB_HOST = '127.0.0.1'
+DB_NAME = 'datalake'
+DB_USER = 'superset'
+DB_PASSWORD = 'superset'
+
+import psycopg2
+from psycopg2 import OperationalError
+
+def test_postgresql_connection(host, database, user, password):
+
+    # Connect to the PostgreSQL database
+    conn = psycopg2.connect(
+    host=DB_HOST, 
+    database=DB_NAME,
+    user=DB_USER,
+    password=DB_PASSWORD,
+    )
+    print("Connected to PostgreSQL database successfully.")
+    # Create a cursor object
+    cursor = conn.cursor()
+
+    # Execute the TRUNCATE statement
+    cursor.execute("TRUNCATE TABLE home_face_camera_alarm_data;")
+
+    # Commit the changes
+    conn.commit()
+
+    # Close the cursor and connection
+    cursor.close()
+    conn.close()
+
+# Replace with your PostgreSQL database credentials
+test_postgresql_connection('localhost', 'your_database', 'your_username', 'your_password')
 
 
 

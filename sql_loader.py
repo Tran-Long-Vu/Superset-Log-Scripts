@@ -109,6 +109,19 @@ class SqlLoader():
 
 if __name__ == '__main__':   
     print('     ...start upload....')
+    ''' 
+    for alarm in csv:
+        read csv (alarm)
+        write to sqldb
+        dump memory 
+        repeat loop
+        
+        red csv (event)
+        write
+        dump mem
+        repeat 
+    
+    '''
     loader = SqlLoader()
     event_df = loader.event_data
     alarm_df = loader.alarm_df
@@ -118,6 +131,7 @@ if __name__ == '__main__':
     loader.push_event_data_to_db(event_df,'home_face_camera_event_log_data')
     loader.push_event_data_to_db(alarm_df,'home_face_camera_alarm_data')
     loader.disconnect_database()
+    
     pass
 
 
