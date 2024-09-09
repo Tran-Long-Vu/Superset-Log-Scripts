@@ -13,10 +13,7 @@ PATH_TO_EVENT_CSV = 'output_csv/event_csv/'
 PATH_TO_ALARM_CSV = 'output_csv/alarm_csv/'
 
 
-# from sql_loader import SqlLoader
-# from sql_loader import SqlLoader
 def limit_memory(maxsize):
-    # Set the maximum memory limit (in bytes)
     soft, hard = resource.getrlimit(resource.RLIMIT_AS)
     resource.setrlimit(resource.RLIMIT_AS, (maxsize, hard))
 
@@ -24,15 +21,11 @@ def limit_memory(maxsize):
 class Extractor():
     def __init__(self) -> None:
         self.path_to_json = './json_logs'
-        #self.values_df_rev = self.read_json() 
-        #self.event_data_log_string = self.collect_all_events(self.values_df_rev) 
         pass
     
     
-    def read_single_file(self, json_file): # call at bottom
-        # read json (json_path)
-        df = pd.read_json(json_file) # read data frame from json file
-        # reformat: 
+    def read_single_file(self, json_file): 
+        df = pd.read_json(json_file) 
         result_column_df = df['data']['result']
         all_values = []
         for i in range(len(result_column_df)): 
@@ -43,17 +36,15 @@ class Extractor():
         return values_df_rev
     
     def write_all(self, json_folder_path):
-    # iteratively read json files.
         index = 0
         for filename in tqdm.tqdm(os.listdir(json_folder_path), desc ="Reading json files: "):
-            if filename.endswith('.json'):  # Ensure the file is a JSON file 
+            if filename.endswith('.json'):  
                 file_path = os.path.join(json_folder_path, filename)
                 json_df = self.read_single_file(file_path)
                 event_all_df = self.collect_all_events(json_df)
                 
                 event_df , alarm_df = self.fetch_all(event_all_df)
                 alarm_df.drop('AlarmMsg', axis = 1, inplace = True)
-                # print(alarm_df.columns)
                 
                 self.write_to_csv_folder(index,
                 event_df,
@@ -113,23 +104,22 @@ class Extractor():
         event_file_path = os.path.join(event_csv_path, event_file_name)
         alarm_file_path = os.path.join(alarm_csv_path, alarm_file_name)
         
-                # Write event_df to CSV normally
+            
         event_df.to_csv(
             event_file_path, 
-            mode='w',  # Use 'w' to write (overwrite) the file
-            header=True,  # Write header
-            index=False  # Do not write row index
+            mode='w', 
+            header=True, 
+            index=False  
         )
 
-        # Write alarm_df to CSV normally
         alarm_df.to_csv(
             alarm_file_path, 
-            mode='w',  # Use 'w' to write (overwrite) the file
-            header=True,  # Write header
-            index=False  # Do not write row index
+            mode='w', 
+            header=True,
+            index=False  
         )
 
-        # Free memory by deleting DataFrames
+    
         del event_df
         del alarm_df
     
@@ -145,7 +135,6 @@ class Extractor():
                         self.fetch_time_process_home_face(event_all_df),
                         self.fetch_all_time_worker(event_all_df)
                         ],
-                        # ignore_index=True,
                         axis=1)
         response_alarm = self.fetch_response_alarm(event_all_df)
         delay_alarm = self.fetch_delay_alarm(event_all_df)       
@@ -157,16 +146,13 @@ class Extractor():
             [response_alarm_subset, delay_alarm_subset],
             axis=1
         )
-        #
-        
-        # print(alarm_df.columns)
         
         df_result = df_result.drop('token',axis = 1)
         df_result = df_result.drop('time_millis',axis = 1)
         df_result = df_result.drop('encrypted_str',axis = 1)
         df_result = df_result.drop('startTime',axis = 1)
         df_result = df_result.drop('endTime',axis = 1)
-        df_result = df_result.replace('Not Found', pd.NA).dropna() # not NA
+        df_result = df_result.replace('Not Found', pd.NA).dropna() 
 
         return df_result , alarm_df
     def get_args(self, log):
@@ -179,7 +165,7 @@ class Extractor():
             arg_match = re.search(r'arg:\s*(\{.*?\})', log)
             if arg_match:
                 args_string = arg_match.group(1)
-                args_dict = ast.literal_eval(args_string) ##
+                args_dict = ast.literal_eval(args_string) 
                 df = pd.json_normalize(args_dict)
                 return df
             
@@ -194,7 +180,7 @@ class Extractor():
             if isinstance(log, list):
                 log = log[0]
             args_df = self.get_args(log)
-            args_dfs.append(args_df) # Null error
+            args_dfs.append(args_df)
         final_args_df = pd.concat(args_dfs, ignore_index=True)
         
         return(final_args_df)
@@ -255,7 +241,7 @@ class Extractor():
         
         '''
         if 'Time query event: ' in log:
-            time_query_event_match = re.search(r'Time query event: (\d+\.\d{3})', log) # search string & end string 
+            time_query_event_match = re.search(r'Time query event: (\d+\.\d{3})', log) 
             if time_query_event_match:
                 time_query_event_string = time_query_event_match.group(1) 
                 return pd.DataFrame({'TimeQueryEvent': [time_query_event_string]})
@@ -379,16 +365,9 @@ class Extractor():
 
 
 if __name__ == '__main__':   
-    limit_memory(12 * 1024 * 1024 * 1024)  # Limit to 8 GB 
+    limit_memory(12 * 1024 * 1024 * 1024) 
 
     extractor = Extractor()
     extractor.write_all('json_logs')
-    # # bug: kernel crash
-    # print(df_result)
-    # print(alarm_df)
-    
-    # df_result.to_csv('./output_csv/event_log_data.csv')
-    # alarm_df.to_csv('./output_csv/alarm_data.csv')
-    # print('Data converted to CSV.')
     pass
 
