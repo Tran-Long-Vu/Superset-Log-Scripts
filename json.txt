@@ -1,0 +1,677 @@
+'''
+sample json text:
+for generating data fields:
+
+
+TODO: analyze the image recognition data. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+    "1727575721389387668",
+    "2024-09-29 09:08:41.389 | INFO  
+       | event_manager.services.v1.jf:query_info_cam:57
+        - service_key: ['FACE_RECOGNITION']"
+,
+[
+    "1727575721388577321",
+    "2024-09-29 09:08:41.388 | INFO   
+      | event_manager.utils.redis:get:155
+       - Get data redis success"
+],
+[
+    "1727575721387086742",
+    "2024-09-29 09:08:41.386 | INFO   
+      | event_manager.routers.v1.jf.
+      event:jf_event_receiver:32 -
+       request: {
+        'AuthCode': '5029d1ba3223e350',
+        'PicSize': 27944, 
+        'DevName': '5029d1ba3223e350',
+         'AlarmID': '240929090842',
+          'AlarmVendor': 'JF',
+           'AlarmTime': '2024-09-29 09:08:42', 
+           'PicName': '003/003_5029d1ba3223e350_240929090842.jpeg',
+            'PicBuckInfo': 'VTT_camera124', 
+            'Channel': 0, 
+            'PicUrl': 'https%3A%2F%2Fcamera124.s3-hn-4.cloud.cmctelecom.vn%2F003%2F003_5029d1ba3223e350_240929090842.jpeg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DH14WLJVOY0NROWFICADV%252F20240929%252F%252Fs3%252Faws4_request%26X-Amz-Date%3D20240929T020841Z%26X-Amz-Expires%3D86400%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D28be32819321ebcddbdf9e8cce7993294ae74c9040f9eff6b4eeb602af7501fb', 
+            'AlarmMsg': '', 
+            'AlarmEvent': 'VideoMotion:2', 
+            'SerialNumber': '5029d1ba3223e350',
+             'Status': 'appEventStart'}"
+],
+[
+    "1727575721386839810",
+    "2024-09-29 09:08:41.386 | INFO  
+       | event_manager.routers.v1.j
+       f.event:jf_event_receiver:26
+        - Request Body Param:
+         {\"AuthCode\":\"5029d1ba3223e350\",
+         \"PicSize\":27944,
+         \"DevName\":\"5029d1ba3223e350\",
+         \"AlarmID\":\"240929090842\",
+         \"AlarmVendor\":\"JF\",
+         \"AlarmTime\":\"2024-09-29 09:08:42\",
+         \"PicName\":\"003\\/003_5029d1ba3223e350_240929090842.jpeg\",
+         \"PicBuckInfo\":\"VTT_camera124\",
+         \"Channel\":0,
+         \"PicUrl\":\"https%3A%2F%2Fcamera124.s3-hn-4.cloud.cmctelecom.vn%2F003%2F003_5029d1ba3223e350_240929090842.jpeg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DH14WLJVOY0NROWFICADV%252F20240929%252F%252Fs3%252Faws4_request%26X-Amz-Date%3D20240929T020841Z%26X-Amz-Expires%3D86400%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D28be32819321ebcddbdf9e8cce7993294ae74c9040f9eff6b4eeb602af7501fb\",
+         \"AlarmMsg\":\"\",
+         \"AlarmEvent\":\"VideoMotion:2\",
+         \"SerialNumber\":\"5029d1ba3223e350\",
+         \"Status\":\"appEventStart\"}"
+],
+[
+    "1727575721386756132",
+    "2024-09-29 09:08:41.386 | INFO   
+      | event_manager.routers.v1.jf.e
+      vent:jf_event_receiver:25 -
+       Request Body: param={
+        \"AuthCode\":\"5029d1ba3223e350\",
+        \"PicSize\":27944,
+        \"DevName\":\"5029d1ba3223e350\",
+        \"AlarmID\":\"240929090842\",
+        \"AlarmVendor\":\"JF\",
+        \"AlarmTime\":\"2024-09-29 09:08:42\",
+        \"PicName\":\"003\\/003_5029d1ba3223e350_240929090842.jpeg\",
+        \"PicBuckInfo\":\"VTT_camera124\",
+        \"Channel\":0,
+        \"PicUrl\":\"https%3A%2F%2Fcamera124.s3-hn-4.cloud.cmctelecom.vn%2F003%2F003_5029d1ba3223e350_240929090842.jpeg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DH14WLJVOY0NROWFICADV%252F20240929%252F%252Fs3%252Faws4_request%26X-Amz-Date%3D20240929T020841Z%26X-Amz-Expires%3D86400%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D28be32819321ebcddbdf9e8cce7993294ae74c9040f9eff6b4eeb602af7501fb\",
+        \"AlarmMsg\":\"\",
+        \"AlarmEvent\":\"VideoMotion:2\",
+        \"SerialNumber\":\"5029d1ba3223e350\",
+        \"Status\":\"appEventStart\"}"
+],
+[
+    "1727575721386554082",
+    "2024-09-29 09:08:41.386 | INFO   
+    
+      | event_manager.routers.v1.jf.e
+      vent:jf_event_receiver:24 -
+       Request Headers: Headers({
+        'host': 'iss.viettel.io',
+         'x-real-ip': '125.212.194.178', 
+         'x-forwarded-for': '125.212.194.178',
+          'connection': 'close',
+           'content-length': '761',
+            'content-type': 'application/x-www-form-urlencoded', 
+            'user-agent': 'lua-resty-http/0.06 (Lua) ngx_lua/10020'})"
+],
+
+
+
+
+
+
+
+
+
+  "1727515057698296725",
+    "2024-09-28 16:17:37.697 | INFO  
+       | event_manager.services.v1.vss:process_ai_
+       event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727515057697698393",
+    "2024-09-28 16:17:37.697 | INFO  
+       | event_manager.services.v1.vss:pr
+       ocess_ai_event:23 - metadata: 
+       {'img_uuid': 'face/1727515057_09b39c13-4e33-4680-b340-f77e37bfa8f7_vht_cam_01_0.jpg',
+        'event_type': 'FACE_RECOGNITION',
+         'description':
+          '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\",
+           \"group\": \"vht.mdo.com.vn\",
+            \"access_key\": \"access123\",
+             \"user_id\": \"3126\",
+              \"source_id\": \"vht_cam_01\",
+               \"video_id\": \"kKoXFp1dpzpLpEFQEKVU7vUnfpEAPTx8tg\", 
+               \"object_id\": \"33\",
+                \"bbox\": [864, 261, 903, 306], 
+                \"lm\": [876.0, 280.0, 894.0, 282.0, 884.0, 293.0, 877.0, 299.0, 890.0, 300.0],
+                 \"confidence\": 0.6014198064804077,
+                  \"image_path\": \"3126_vht_cam_01_a3a88b020eed4cdf8dc6fdf1a88815d6.jpg\", 
+                  \"timestamp\": 1727515057.513848,
+                   \"message_base64\":
+                     {\"si\": {\"si_id\": \"vht.mdo.com.vn\",
+                      \"si_name\": \"vht.mdo.com.vn\",
+                       \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\",
+                        \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\",
+                         \"method\": \"POST\"}}, 
+                            \"user\": {\"user_id\": \"3126\",
+                             \"user_name\": \"vht\",
+                              \"user_group\": \"vht.mdo.com.vn\"},
+                               \"service_key\": \"FACE_RECOGNITION\", 
+                               \"cam_info\":
+                                 {\"cam_id\": \"vht_cam_01\", 
+                                 \"location\": \"HN\", 
+                                 \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\",
+                                  \"accessKey\": \"access123\", 
+                                  \"endpoint\": \"\",
+                                   \"ai_streaming_out\": true,
+                                    \"video_event\": true},
+                                     \"ai_config\": 
+                                        {\"dist_type\": \"string\", 
+                                        \"attribute\": [\"gender\", \"age\"],
+                                         \"landmark\": true, 
+                                         \"limitation\": 100, 
+                                         \"min_size\": 20,
+                                          \"max_size\": 500,
+                                           \"nms_threshold\": 0.5,
+                                            \"conf_threshold\": 0.5},
+                                             \"hi_config\": {\"zones\": [],
+                                              \"lines\": [], 
+                                              \"time_interval\": 30.0,
+                                               \"overlap_threshold\": 0.5,
+                                                \"margin\": 10.0,
+                                                 \"time_threshold\": 60.0}},
+                                                  \"silent_face\": \"living\",
+                                                   \"person_id\": 
+                                                   [\"3157\", \"3157\", \"3157\", \"3157\", \"3157\"],
+                                                    \"person_name\": [\"Ho\\\\u00e0ng M\\\\u1ef9 Linh\",
+                                                     \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\", 
+                                                     \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\",
+                                                      \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\",
+                                                       \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\"],
+                                                       
+                                                        \"dist\": [1.7404758930206299, 1.7682124376296997, 1.7793912887573242, 1.7928895950317383, 1.8104298114776611]}]}'}"
+],
+[
+    "1727515057696721195",
+    "2024-09-28 16:17:37.696 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727515057696154659",
+    "2024-09-28 16:17:37.695 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727515057694988072",
+    "2024-09-28 16:17:37.693 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727513143392979153",
+    "2024-09-28 15:45:43.392 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727513143392618504",
+    "2024-09-28 15:45:43.392 | INFO     | event_manager.services.v1.vss:process_ai_event:23 
+    - metadata: {'img_uuid': 'face/1727513143_0e8903ea-98ea-4cce-b90e-30b94415d0b3_vht_cam_01_0.jpg',
+     'event_type': 'FACE_RECOGNITION',
+      'description':
+       '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\",
+      \"group\": \"vht.mdo.com.vn\",
+       \"access_key\": \"access123\",
+        \"user_id\": \"3126\",
+         \"source_id\": \"vht_cam_01\",
+          \"video_id\": \"jQpDp6VbyD047riso0GUDk1BQlxkb6gwSm\",
+           \"object_id\": \"32\", \"bbox\": [840, 594, 912, 678], \"lm\": [861.0, 625.0, 895.0, 630.0, 875.0, 648.0, 861.0, 662.0, 884.0, 666.0], \"confidence\": 0.6914383172988892, \"image_path\": \"3126_vht_cam_01_88fb74a7ed704fd8ad871b9b7b95b499.jpg\", \"timestamp\": 1727513143.2136672, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3129\", \"3160\", \"3160\", \"3158\", \"3129\"], \"person_name\": [\"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Nguy\\\\u1ec5n Quang Chung\", \"Nguy\\\\u1ec5n Quang Chung\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\"], \"dist\": [1.6577458381652832, 1.6614761352539062, 1.6614761352539062, 1.7004395723342896, 1.7196458578109741]}]}'}"
+],
+[
+    "1727513143392152321",
+    "2024-09-28 15:45:43.391 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727513143391797570",
+    "2024-09-28 15:45:43.391 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727513143391424172",
+    "2024-09-28 15:45:43.390 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727513142602674068",
+    "2024-09-28 15:45:42.602 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727513142602167536",
+    "2024-09-28 15:45:42.601 | INFO     | event_manager.services.v1.vss:process_ai_event:23 -
+    metadata: {'img_uuid': 'face/1727513142_25448c16-51f2-43f3-86ae-77ff13375967_vht_cam_01_0.jpg',
+     'event_type': 'FACE_RECOGNITION',
+      'description': 
+      '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"jQpDp6VbyD047riso0GUDk1BQlxkb6gwSm\", \"object_id\": \"31\", \"bbox\": [873, 366, 927, 423], \"lm\": [889.0, 387.0, 912.0, 388.0, 900.0, 401.0, 891.0, 410.0, 909.0, 411.0], \"confidence\": 0.7617831826210022, \"image_path\": \"3126_vht_cam_01_3a71940d5e8a4385b4620a78044c0971.jpg\", \"timestamp\": 1727513142.4103339, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3160\", \"3160\", \"3160\", \"3160\", \"3159\"], \"person_name\": [\"Nguy\\\\u1ec5n Quang Chung\", \"Nguy\\\\u1ec5n Quang Chung\", \"Nguy\\\\u1ec5n Quang Chung\", \"Nguy\\\\u1ec5n Quang Chung\", \"\\\\u0110inh V\\\\u0103n Duy\"], \"dist\": [1.7664077281951904, 1.7664077281951904, 1.7933112382888794, 1.7933112382888794, 1.8246712684631348]}]}'}"
+],
+[
+    "1727513142601344315",
+    "2024-09-28 15:45:42.601 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727513142600874771",
+    "2024-09-28 15:45:42.600 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727513142599850260",
+    "2024-09-28 15:45:42.598 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727512825397199040",
+    "2024-09-28 15:40:25.396 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727512825396774459",
+    "2024-09-28 15:40:25.396 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata:
+     {'img_uuid': 'face/1727512825_14e2ca93-b6e3-46dd-9206-2fe0d9b59a81_vht_cam_01_0.jpg', 
+     'event_type': 'FACE_RECOGNITION', 
+     'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", 
+     \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"j9TfwH1ZdkrqHulyEz9JiCjEBio2jPHUFk\", 
+     \"object_id\": \"30\", \"bbox\": [879, 285, 924, 336], \"lm\": [893.0, 308.0, 913.0, 311.0, 901.0, 320.0, 892.0, 328.0, 907.0, 330.0],
+      \"confidence\": 0.6500086188316345, \"image_path\": \"3126_vht_cam_01_752f3493fef349d5a3f012cf0644a1f2.jpg\",
+       \"timestamp\": 1727512825.21056, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\",
+        \"si_name\": \"vht.mdo.com.vn\", 
+        \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\",
+         \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\",
+        \"method\": \"POST\"}},
+         \"user\": {\"user_id\": \"3126\",
+          \"user_name\": \"vht\", 
+          \"user_group\": \"vht.mdo.com.vn\"}, 
+          \"service_key\": \"FACE_RECOGNITION\", 
+          \"cam_info\": {\"cam_id\": \"vht_cam_01\",
+           \"location\": \"HN\",
+            \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\",
+             \"accessKey\": \"access123\", 
+             \"endpoint\": \"\", 
+             \"ai_streaming_out\": true, 
+             \"video_event\": true}, 
+             \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100,
+              \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], 
+              \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, 
+              \"silent_face\": \"living\", \"person_id\": [\"3159\", \"3159\", \"3129\", \"3159\", \"3129\"], \"person_name\":
+               [\"\\\\u0110inh V\\\\u0103n Duy\", \"\\\\u0110inh V\\\\u0103n Duy\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", 
+               \"\\\\u0110inh V\\\\u0103n Duy\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\"], 
+               \"dist\": [1.7681232690811157, 1.7727768421173096, 1.793999195098877, 1.795647144317627, 1.8019047975540161]}]}'}"
+],
+[
+    "1727512825396177195",
+    "2024-09-28 15:40:25.395 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727512825395841589",
+    "2024-09-28 15:40:25.395 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727512825394802026",
+    "2024-09-28 15:40:25.393 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727512004329771655",
+    "2024-09-28 15:26:44.329 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727512004329635267",
+    "2024-09-28 15:26:44.329 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727512004_73482902-f612-4337-8225-4804d43cb3f9_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"j9xH7VoDwXAYt6sFDfmQxMLLTHTaM9k8cm\", \"object_id\": \"29\", \"bbox\": [846, 354, 900, 423], \"lm\": [865.0, 380.0, 890.0, 387.0, 874.0, 396.0, 861.0, 404.0, 880.0, 410.0], \"confidence\": 0.7625893950462341, \"image_path\": \"3126_vht_cam_01_417e5373d4c14c54909eb54ceef62fbe.jpg\", \"timestamp\": 1727512004.110692, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3129\", \"3129\", \"3129\", \"3129\", \"3129\"], \"person_name\": [\"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\"], \"dist\": [1.741870641708374, 1.7847011089324951, 1.79740309715271, 1.8095592260360718, 1.815774917602539]}]}'}"
+],
+[
+    "1727512004329345191",
+    "2024-09-28 15:26:44.329 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727512004329250982",
+    "2024-09-28 15:26:44.329 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727512004328474351",
+    "2024-09-28 15:26:44.327 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727510215556194180",
+    "2024-09-28 14:56:55.552 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727510215556150762",
+    "2024-09-28 14:56:55.552 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727510215_d702e376-8f12-4cef-938e-10c951ad1f60_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"iPLa0de9fMuKSfO2WtqgE95d61mjyJLzFr\", \"object_id\": \"28\", \"bbox\": [951, 303, 996, 357], \"lm\": [964.0, 328.0, 984.0, 326.0, 974.0, 339.0, 968.0, 348.0, 984.0, 346.0], \"confidence\": 0.7920464873313904, \"image_path\": \"3126_vht_cam_01_d1f8040d0ae54ac499d6d56ef98bfd26.jpg\", \"timestamp\": 1727510215.410858, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3129\", \"3129\", \"3157\", \"3157\", \"3129\"], \"person_name\": [\"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\", \"Ho\\\\u00e0ng M\\\\u1ef9 Linh\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\"], \"dist\": [1.7193093299865723, 1.7221132516860962, 1.781808853149414, 1.792037010192871, 1.8249037265777588]}]}'}"
+],
+[
+    "1727510215556124199",
+    "2024-09-28 14:56:55.551 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727510215556105206",
+    "2024-09-28 14:56:55.551 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727510215556017651",
+    "2024-09-28 14:56:55.549 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727509410461630646",
+    "2024-09-28 14:43:30.461 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727509410461512465",
+    "2024-09-28 14:43:30.461 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727509410_3b893c2a-afeb-4ffe-a878-dedc48ff3695_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"hWuX8WmFqmMCXqMCFhMsziXdWQkUFgW0oe\", \"object_id\": \"27\", \"bbox\": [1044, 201, 1077, 237], \"lm\": [1056.0, 215.0, 1071.0, 217.0, 1063.0, 224.0, 1056.0, 230.0, 1067.0, 231.0], \"confidence\": 0.7265952229499817, \"image_path\": \"3126_vht_cam_01_87f2cac963b14b17a93471f82ba379c1.jpg\", \"timestamp\": 1727509410.310745, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3130\", \"3130\", \"3130\", \"3130\", \"3130\"], \"person_name\": [\"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\"], \"dist\": [1.708176851272583, 1.708176851272583, 1.7863924503326416, 1.7863924503326416, 1.819000005722046]}]}'}"
+],
+[
+    "1727509410461239293",
+    "2024-09-28 14:43:30.461 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727509410461117736",
+    "2024-09-28 14:43:30.460 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727509410460528573",
+    "2024-09-28 14:43:30.459 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727509245742611653",
+    "2024-09-28 14:40:45.742 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727509245742509698",
+    "2024-09-28 14:40:45.742 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727509245_ed03dffe-01f7-4dcb-a946-4606d9d13dfb_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"hQyUCasCiklllCNDUZmerU1TMjS3Mt1Xjg\", \"object_id\": \"26\", \"bbox\": [1395, 882, 1476, 957], \"lm\": [1425.0, 924.0, 1460.0, 915.0, 1448.0, 940.0, 1435.0, 949.0, 1460.0, 942.0], \"confidence\": 0.6602556109428406, \"image_path\": \"3126_vht_cam_01_fcb2126c399844c0ad993204575f6da1.jpg\", \"timestamp\": 1727509245.61042, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"spoof\", \"person_id\": [\"3158\", \"3158\", \"3158\", \"3158\", \"3158\"], \"person_name\": [\"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\"], \"dist\": [1.7519688606262207, 1.766608715057373, 1.7945278882980347, 1.7948029041290283, 1.7962665557861328]}]}'}"
+],
+[
+    "1727509245742216470",
+    "2024-09-28 14:40:45.741 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727509245741904353",
+    "2024-09-28 14:40:45.741 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727509245741833685",
+    "2024-09-28 14:40:45.741 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727509242569078907",
+    "2024-09-28 14:40:42.568 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727509242568776531",
+    "2024-09-28 14:40:42.568 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727509242_6501a4cf-03d0-4df4-b2c3-bb3fb5ab3ec9_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"hQyUCasCiklllCNDUZmerU1TMjS3Mt1Xjg\", \"object_id\": \"25\", \"bbox\": [1050, 705, 1122, 795], \"lm\": [1090.0, 760.0, 1111.0, 752.0, 1110.0, 775.0, 1095.0, 786.0, 1109.0, 781.0], \"confidence\": 0.6191192269325256, \"image_path\": \"3126_vht_cam_01_0487557d28d540feba5e89fe72c44e79.jpg\", \"timestamp\": 1727509242.413249, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"spoof\", \"person_id\": [\"3158\", \"3158\", \"3158\", \"3158\", \"3158\"], \"person_name\": [\"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\"], \"dist\": [1.6174371242523193, 1.6183133125305176, 1.643904685974121, 1.6515146493911743, 1.6662410497665405]}]}'}"
+],
+[
+    "1727509242568097196",
+    "2024-09-28 14:40:42.567 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727509242567716308",
+    "2024-09-28 14:40:42.567 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727509242566715796",
+    "2024-09-28 14:40:42.565 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727509061059231795",
+    "2024-09-28 14:37:41.059 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727509061058870779",
+    "2024-09-28 14:37:41.058 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - 
+        metadata: {'img_uuid': 'face/1727509060_fac79f13-c45d-4328-ab94-ced83b5adf70_vht_cam_01_0.jpg',
+         'event_type': 'FACE_RECOGNITION', 
+         'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", 
+         \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\":
+          \"hU2qFjT4FdyO7j3eLAA4sVPyMp924QlexC\", \"object_id\": \"24\", \"bbox\": [738, 549, 804, 621],
+           \"lm\": [753.0, 576.0, 784.0, 576.0, 768.0, 593.0, 758.0, 606.0, 780.0, 606.0], 
+           \"confidence\": 0.6008475422859192, \"image_path\": \"3126_vht_cam_01_82590352c0aa43b3b2928357f9ea5b4d.jpg\", 
+           \"timestamp\": 1727509060.9104981, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\":
+            \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyOD
+            UyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\":
+             {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", 
+             \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"},
+              \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\",
+               \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\",
+                \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\":
+                {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, 
+                \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [],
+                 \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\":
+                  \"living\", \"person_id\": [\"3129\", \"3129\", \"3158\", \"3158\", \"3129\"],
+                   \"person_name\": [\"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\",
+                    \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ph\\\\u1ea1m Th\\\\u1ecb Th\\\\u00f9y\"],
+                     \"dist\": [1.6424660682678223, 1.686772346496582, 1.717028021812439, 1.721232295036316, 1.73221755027771]}]}'}"
+],
+[
+    "1727509061058195314",
+    "2024-09-28 14:37:41.057 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727509061057839476",
+    "2024-09-28 14:37:41.057 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727509061056570808",
+    "2024-09-28 14:37:41.055 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727508742377664312",
+    "2024-09-28 14:32:22.377 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727508742377470446",
+    "2024-09-28 14:32:22.377 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727508742_d4636883-14b7-4467-8f2a-fd90c363879e_vht_cam_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"h5KzfGWbEZBERk3Ml8EOHwwGHQT5MSRQ4w\", \"object_id\": \"23\", \"bbox\": [798, 564, 867, 642], \"lm\": [819.0, 606.0, 851.0, 603.0, 836.0, 625.0, 827.0, 634.0, 848.0, 631.0], \"confidence\": 0.818915843963623, \"image_path\": \"3126_vht_cam_01_d6cf78df1d0d463caeda49d59486547f.jpg\", \"timestamp\": 1727508742.213928, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\": \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"3158\", \"3158\", \"3158\", \"3158\", \"3158\"], \"person_name\": [\"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\", \"Ho\\\\u00e0ng V\\\\u0103n H\\\\u00e0o\"], \"dist\": [1.6689479351043701, 1.6730897426605225, 1.6766716241836548, 1.6808792352676392, 1.711349368095398]}]}'}"
+],
+[
+    "1727508742377103705",
+    "2024-09-28 14:32:22.376 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727508742376752975",
+    "2024-09-28 14:32:22.376 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727508742375902397",
+    "2024-09-28 14:32:22.375 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727506974414304049",
+    "2024-09-28 14:02:54.412 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727506974414299556",
+    "2024-09-28 14:02:54.412 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727506974_6178ff74-6864-4882-8e3d-9084f09c29ba_bssd_cam_in_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"bssd.mdo.com.vn\", \"group\": \"bssd.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"736\", \"source_id\": \"bssd_cam_in_01\", \"video_id\": \"gtN02OnwdYva4V72nsI6fPvdU1zJYy7bXe\", \"object_id\": \"22\", \"bbox\": [898, 244, 1016, 374], \"lm\": [924.0, 296.0, 949.0, 322.0, 906.0, 323.0, 906.0, 331.0, 925.0, 350.0], \"confidence\": 0.7242361903190613, \"image_path\": \"736_bssd_cam_in_01_73495eb4ce09456e981254d5ca6d686d.jpg\", \"timestamp\": 1727506974.243744, \"message_base64\": {\"si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"bssd_cam_in_01\", \"location\": \"HN\", \"source\": \"rtsp://admin:bssd2024@14.160.26.88:11054/Streaming/channels/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"1592\", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\": [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"], \"dist\": [0.8694208860397339, 0.9407862424850464, 0.9725735187530518, 1.0112217664718628, 1.0555341243743896]}]}'}"
+],
+[
+    "1727506974414293591",
+    "2024-09-28 14:02:54.412 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727506974414289041",
+    "2024-09-28 14:02:54.411 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727506974414246893",
+    "2024-09-28 14:02:54.410 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727506969733741245",
+    "2024-09-28 14:02:49.733 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727506969733192559",
+    "2024-09-28 14:02:49.732 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727506969_e5c00439-6ffa-4ecd-b523-709aafc18b4b_bssd_cam_in_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"bssd.mdo.com.vn\", \"group\": \"bssd.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"736\", \"source_id\": \"bssd_cam_in_01\", \"video_id\": \"gtN02OnwdYva4V72nsI6fPvdU1zJYy7bXe\", \"object_id\": \"21\", \"bbox\": [580, 454, 714, 556], \"lm\": [604.0, 506.0, 648.0, 516.0, 614.0, 536.0, 617.0, 535.0, 648.0, 542.0], \"confidence\": 0.639999508857727, \"image_path\": \"736_bssd_cam_in_01_5d8cf7ffed584e1392a1b9742f578b7d.jpg\", \"timestamp\": 1727506969.536461, \"message_base64\": {\"si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"bssd_cam_in_01\", \"location\": \"HN\", \"source\": \"rtsp://admin:bssd2024@14.160.26.88:11054/Streaming/channels/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"1592\", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\": [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"], \"dist\": [1.2009197473526, 1.229217767715454, 1.2298963069915771, 1.2505528926849365, 1.3460640907287598]}]}'}"
+],
+[
+    "1727506969732502840",
+    "2024-09-28 14:02:49.732 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727506969732158567",
+    "2024-09-28 14:02:49.731 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727506969731569139",
+    "2024-09-28 14:02:49.730 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727506966627334705",
+    "2024-09-28 14:02:46.627 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727506966627111507",
+    "2024-09-28 14:02:46.626 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727506966_43967305-5f95-49bb-95a9-396c8d3a2fe8_bssd_cam_in_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"bssd.mdo.com.vn\", \"group\": \"bssd.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"736\", \"source_id\": \"bssd_cam_in_01\", \"video_id\": \"gtN02OnwdYva4V72nsI6fPvdU1zJYy7bXe\", \"object_id\": \"20\", \"bbox\": [884, 168, 1002, 312], \"lm\": [909.0, 232.0, 940.0, 262.0, 894.0, 264.0, 892.0, 268.0, 915.0, 290.0], \"confidence\": 0.7337777614593506, \"image_path\": \"736_bssd_cam_in_01_1d784a4964e54387b67ad2fbf0552bae.jpg\", \"timestamp\": 1727506966.440489, \"message_base64\": {\"si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"bssd_cam_in_01\", \"location\": \"HN\", \"source\": \"rtsp://admin:bssd2024@14.160.26.88:11054/Streaming/channels/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"1592\", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\": [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"], \"dist\": [0.7842246294021606, 0.8747587203979492, 0.9130154848098755, 0.9286523461341858, 1.0209896564483643]}]}'}"
+],
+[
+    "1727506966626739076",
+    "2024-09-28 14:02:46.626 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727506966626576067",
+    "2024-09-28 14:02:46.626 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727506966625813226",
+    "2024-09-28 14:02:46.625 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727503909299338715",
+    "2024-09-28 13:11:49.299 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727503909298892696",
+    "2024-09-28 13:11:49.298 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727503909_5965fbb4-38d4-4d4e-9796-cc509276458d_bssd_cam_in_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"bssd.mdo.com.vn\", \"group\": \"bssd.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"736\", \"source_id\": \"bssd_cam_in_01\", \"video_id\": \"fmUVnszeCC8jOeGKGVBLZm0SbcrHg1h9D8\", \"object_id\": \"19\", \"bbox\": [988, 102, 1084, 198], \"lm\": [1030.0, 149.0, 1066.0, 153.0, 1049.0, 178.0, 1024.0, 183.0, 1046.0, 187.0], \"confidence\": 0.7548761367797852, \"image_path\": \"736_bssd_cam_in_01_f3547b9266264d609e9d4e9a943f0b89.jpg\", \"timestamp\": 1727503909.1392288, \"message_base64\": {\"si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"bssd_cam_in_01\", \"location\": \"HN\", \"source\": \"rtsp://admin:bssd2024@14.160.26.88:11054/Streaming/channels/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"1592\", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\": [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"], \"dist\": [0.5631406307220459, 0.6107743382453918, 0.6560206413269043, 0.6560206413269043, 0.6733682155609131]}]}'}"
+],
+[
+    "1727503909298190749",
+    "2024-09-28 13:11:49.297 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727503909297737078",
+    "2024-09-28 13:11:49.297 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.34"
+],
+[
+    "1727503909296977358",
+    "2024-09-28 13:11:49.296 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727503848917365437",
+    "2024-09-28 13:10:48.917 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727503848916987621",
+    "2024-09-28 13:10:48.916 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata: {'img_uuid': 'face/1727503848_680bcb5e-933b-4b17-81a8-c51b73b64620_bssd_cam_in_01_0.jpg', 'event_type': 'FACE_RECOGNITION', 'description': '{\"results\": [{\"si_id\": \"bssd.mdo.com.vn\", \"group\": \"bssd.mdo.com.vn\", \"access_key\": \"access123\", \"user_id\": \"736\", \"source_id\": \"bssd_cam_in_01\", \"video_id\": \"fkOWS6HPaBJC78qqJsdGws47z3POSfKEDe\", \"object_id\": \"18\", \"bbox\": [1006, 132, 1108, 216], \"lm\": [1058.0, 172.0, 1086.0, 179.0, 1072.0, 200.0, 1041.0, 200.0, 1056.0, 206.0], \"confidence\": 0.7881734371185303, \"image_path\": \"736_bssd_cam_in_01_be0d50f813ea4fd9b5b817ca61d7348f.jpg\", \"timestamp\": 1727503848.7364428, \"message_base64\": {\"si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\", \"method\": \"POST\"}}, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {\"cam_id\": \"bssd_cam_in_01\", \"location\": \"HN\", \"source\": \"rtsp://admin:bssd2024@14.160.26.88:11054/Streaming/channels/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\": [\"1592\", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\": [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"], \"dist\": [0.7193537950515747, 0.7794769406318665, 0.8248370289802551, 0.8248370289802551, 0.8638309240341187]}]}'}"
+],
+[
+    "1727503848916305209",
+    "2024-09-28 13:10:48.916 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727503848915940152",
+    "2024-09-28 13:10:48.915 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727503848915086537",
+    "2024-09-28 13:10:48.914 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727502868806592011",
+    "2024-09-28 12:54:28.806 | INFO     | event_manager.services.v1.vss:process_ai_event:24 - Task to worker event: event_vss_face_recognition"
+],
+[
+    "1727502868806214114",
+    "2024-09-28 12:54:28.805 | INFO    
+     | event_manager.services.v1.vss:process_ai_event:23 -
+      metadata: {'img_uuid':
+       'face/1727502868_90b8779e-b04c-43df-8e8a-6d0a3f16e1b7_vht_cam_01_0.jpg',
+        'event_type': 'FACE_RECOGNITION', 'description': '
+        {\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", 
+        \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\",
+         \"video_id\": \"eqksLwAxsBUAMf1k0VtbnqSijFHYc4DHqI\", \"object_id\": \"16\", 
+         \"bbox\": [894, 246, 945, 309], 
+         \"lm\": [911.0, 273.0, 934.0, 277.0, 921.0, 288.0, 910.0, 297.0, 926.0, 300.0], 
+         \"confidence\": 0.7724858522415161, \"image_path\":
+          \"3126_vht_cam_01_9d3562fc5b884fd8b8151a4e04ce38ae.jpg\",
+           \"timestamp\": 1727502868.6133661, \"message_base64\": {\"si\":
+            {\"si_id\": \"vht.mdo.com.vn\", \"si_name\": \"vht.mdo.com.vn\", 
+            \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjox
+            NzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\":
+             {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitle
+             ss/public/event-user-time-keeping\", \"method\": \"POST\"}},
+              \"user\": {\"user_id\": \"3126\", \"user_name\": \"vht\", \"user_group\":
+               \"vht.mdo.com.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\":
+                {\"cam_id\": \"vht_cam_01\", \"location\": \"HN\", \"source\": 
+                \"rtsp://teststream:Camera@1234@27.72.146.175:8555/fhd\", \"accessKey\":
+                 \"access123\", \"endpoint\": \"\", \"ai_streaming_out\": true, 
+                 \"video_event\": true}, \"ai_config\": {\"dist_type\": \"string\",
+                  \"attribute\": [\"gender\", \"age\"], \"landmark\": true, \"limitation\": 
+                  100, \"min_size\": 20, \"max_size\": 500, \"nms_threshold\": 0.5,
+                   \"conf_threshold\": 0.5}, \"hi_config\": {\"zones\": [], \"lines\": [],
+                    \"time_interval\": 30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0,
+                     \"time_threshold\": 60.0}}, \"silent_face\": \"living\", \"person_id\":
+                      [\"3130\", \"3130\", \"3130\", \"3130\", \"3130\"], \"person_name\": 
+                      [\"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i 
+                      Th\\\\u1ecb Qu\\\\u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\
+                      \u1ef3nh Trang\", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\
+                      ", \"Th\\\\u00e1i Th\\\\u1ecb Qu\\\\u1ef3nh Trang\"], 
+                      
+                      \"dist\": [1.626593828201294, 1.626593828201294, 1.720882534980774, 
+                      1.720882534980774, 1.794064998626709]}]}'}"
+],
+[
+    "1727502868805273246",
+    "2024-09-28 12:54:28.805 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:22 - User-Agent: python-requests/2.28.1"
+],
+[
+    "1727502868804842817",
+    "2024-09-28 12:54:28.804 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:21 - Client IP: 17.32.20.0"
+],
+[
+    "1727502868803805936",
+    "2024-09-28 12:54:28.802 | INFO     | event_manager.routers.v1.vss.event:vss_event_receiver:20 - =================Received metadata from ai server================="
+],
+[
+    "1727502651450116525",
+    "2024-09-28 12:50:51.449 | INFO     | event_manager.services.v1.jf:process_ai_event:22 - Task to worker event: event_image_captioning"
+],
+[
+    "1727502651449781605",
+    "2024-09-28 12:50:51.449 | INFO     | event_manager.services.v1.jf:process_ai_event:21 - 
+    metadata: {'si_id': 'JF', 'user_id': '5afa5178-c4a6-4eda-af3d-4f816135cea4', 
+    'group_id': 'JF', 'device_id': 'ba39b3962a4bfe81', 'img_uuid': 
+    '71e0e4adef554723916516929bc83305', 'event_type': 'VHT_AI_SERVICE_IMAGE_CAPTIONING',
+     'alarm_id': '240928125046', 'description': 
+     '{\"caption\": \"V\u0103n ph\u00f2ng s\u1ea1ch s\u1ebd v\u00e0 s\u1eb5n 
+     s\u00e0ng cho nh\u00e2n vi\u00ean s\u1eed d\u1ee5ng\", 
+     \"alarm_time\": \"2024-09-28 12:50:47\"}'}"
+],
+[
+    "1727502651449741085",
+    "2024-09-28 12:50:51.448 | INFO     | event_manager.routers.v1.jf.event:aiserver_event_receiver:87 - User-Agent: python-requests/2.32.3"
+],
+[
+    "1727502651449736628",
+    "2024-09-28 12:50:51.448 | INFO     | event_manager.routers.v1.jf.event:aiserver_event_receiver:86 - Client IP: 172.21.5.166"
+],
+[
+    "1727502651449693959",
+    "2024-09-28 12:50:51.447 | INFO     | event_manager.routers.v1.jf.event:aiserver_event_receiver:85 - =================Received metadata from ai server================="
+],
+[
+    "1727502646769760637",
+    "2024-09-28 12:50:46.769 | INFO     | event_manager.services.v1.jf:query_info_cam:57 
+    - service_key: ['IMAGE_CAPTIONING', 'FACE_RECOGNITION']"
+],
+[
+    "1727502646768873294",
+    "2024-09-28 12:50:46.768 | INFO     | event_manager.utils.redis:get:155 - Get data redis success"
+],
+[
+    "1727502646767441221",
+    "2024-09-28 12:50:46.767 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:32 - request: {'AuthCode': 'ba39b3962a4bfe81', 'CssBucketInfo': 'OBS_sg-ai-img', 'AlarmEvent': 'VideoMotion:2', 'PicUrl': 'https%3A%2F%2Fsg-ai-img.obs.ap-southeast-3.myhuaweicloud.com%2F003%2F003_ba39b3962a4bfe81_240928125046.jpeg%3FAWSAccessKeyId%3DVV3751TPO6T7QMHQZSEI%26Expires%3D1727589046%26Signature%3DWiACYCP8oxF6gtLgJsPBZ94BjkU%253D', 'AlarmTime': '2024-09-28 12:50:47', 'DevName': 'ba39b3962a4bfe81', 'AlarmMsg': '', 'AlarmVendor': 'JF', 'PicName': '003/003_ba39b3962a4bfe81_240928125046.jpeg', 'Status': 'appEventStart', 'SerialNumber': 'ba39b3962a4bfe81', 'Channel': 0, 'CssPicSize': 43891, 'AlarmID': '240928125046'}"
+],
+[
+    "1727502646766732078",
+    "2024-09-28 12:50:46.766 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:26 - Request Body Param: {\"AuthCode\":\"ba39b3962a4bfe81\",\"CssBucketInfo\":\"OBS_sg-ai-img\",\"AlarmEvent\":\"VideoMotion:2\",\"PicUrl\":\"https%3A%2F%2Fsg-ai-img.obs.ap-southeast-3.myhuaweicloud.com%2F003%2F003_ba39b3962a4bfe81_240928125046.jpeg%3FAWSAccessKeyId%3DVV3751TPO6T7QMHQZSEI%26Expires%3D1727589046%26Signature%3DWiACYCP8oxF6gtLgJsPBZ94BjkU%253D\",\"AlarmTime\":\"2024-09-28 12:50:47\",\"DevName\":\"ba39b3962a4bfe81\",\"AlarmMsg\":\"\",\"AlarmVendor\":\"JF\",\"PicName\":\"003\\/003_ba39b3962a4bfe81_240928125046.jpeg\",\"Status\":\"appEventStart\",\"SerialNumber\":\"ba39b3962a4bfe81\",\"Channel\":0,\"CssPicSize\":43891,\"AlarmID\":\"240928125046\"}"
+],
+[
+    "1727502646766269765",
+    "2024-09-28 12:50:46.765 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:25 - Request Body: param={\"AuthCode\":\"ba39b3962a4bfe81\",\"CssBucketInfo\":\"OBS_sg-ai-img\",\"AlarmEvent\":\"VideoMotion:2\",\"PicUrl\":\"https%3A%2F%2Fsg-ai-img.obs.ap-southeast-3.myhuaweicloud.com%2F003%2F003_ba39b3962a4bfe81_240928125046.jpeg%3FAWSAccessKeyId%3DVV3751TPO6T7QMHQZSEI%26Expires%3D1727589046%26Signature%3DWiACYCP8oxF6gtLgJsPBZ94BjkU%253D\",\"AlarmTime\":\"2024-09-28 12:50:47\",\"DevName\":\"ba39b3962a4bfe81\",\"AlarmMsg\":\"\",\"AlarmVendor\":\"JF\",\"PicName\":\"003\\/003_ba39b3962a4bfe81_240928125046.jpeg\",\"Status\":\"appEventStart\",\"SerialNumber\":\"ba39b3962a4bfe81\",\"Channel\":0,\"CssPicSize\":43891,\"AlarmID\":\"240928125046\"}"
+],
+[
+    "1727502646765725724",
+    "2024-09-28 12:50:46.765 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:24 - Request Headers: Headers({'host': 'iss.viettel.io', 'x-real-ip': '171.244.53.92', 'x-forwarded-for': '171.244.53.92', 'connection': 'close', 'content-length': '594', 'user-agent': 'lua-resty-http/0.06 (Lua) ngx_lua/10020', 'content-type': 'application/x-www-form-urlencoded'})"
+],
+[
+    "1727502646764373057",
+    "2024-09-28 12:50:46.763 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:21 - =================Received metadata from jf================="
+],
