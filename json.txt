@@ -675,3 +675,89 @@ TODO: analyze the image recognition data.
     "1727502646764373057",
     "2024-09-28 12:50:46.763 | INFO     | event_manager.routers.v1.jf.event:jf_event_receiver:21 - =================Received metadata from jf================="
 ],
+
+
+
+
+
+#
+Channel,CssBucketInfo,CssPicSize,PicName,SerialNumber,AlarmID,AlarmTime,AlarmMsg,AlarmEvent,Status,DevName,PicUrl,AuthCode,AlarmVendor,PicBuckInfo,PicSize,Level,AisPush,Save
+
+#
+PicName,PicSize,DevName,AlarmID,Status,AlarmTime,AuthCode,PicBuckInfo,Channel,AlarmVendor,AlarmMsg,AlarmEvent,SerialNumber,PicUrl,CssPicSize,CssBucketInfo
+
+#
+PicSize,Status,AlarmID,AuthCode,PicBuckInfo,Channel,AlarmTime,AlarmMsg,AlarmEvent,SerialNumber,PicUrl,PicName,CssPicSize,CssBucketInfo,AlarmVendor,DevName
+
+CssPicSize,AuthCode,CssBucketInfo,DevName,Channel,Status,PicUrl,AlarmMsg,AlarmVendor,AlarmID,PicName,SerialNumber,AlarmTime,AlarmEvent,PicBuckInfo,PicSize,Level,AisPush
+
+AlarmID,PicSize,AlarmEvent,SerialNumber,DevName,AlarmVendor,Status,AuthCode,PicBuckInfo,Channel,AlarmTime,AlarmMsg,CssPicSize,CssBucketInfo,PicUrl,PicName,Level,AisPush
+
+AlarmTime,AlarmMsg,AlarmEvent,PicSize,Channel,DevName,PicName,Status,PicUrl,AlarmID,SerialNumber,AuthCode,PicBuckInfo,AlarmVendor,CssBucketInfo,CssPicSize,Level,AisPush
+
+change faulty data to default values
+
+
+
+
+
+
+
+
+
+
+"2024-09-12 15:23:29.473 | INFO 
+    | event_manager.services.v1.vss:process_ai_event:23 -
+     metadata:
+      {'img_uuid': 'face/1726129409_ccdc760e-40e4-4110-8b9d-98ef513cdb1c_bssd_cam_out_
+      01_0.jpg',
+       'event_type': 'FACE_RECOGNITION', 
+       'description': 
+       '{\"results\":
+        [{\"si_id\":
+         \"bssd.mdo.com.vn\",
+          \"group\":
+           \"bssd.mdo.com.vn\",
+            \"access_key\": \"access123\",
+             \"user_id\": \"736\", \"source_id\": \"bssd_cam_out_01\", 
+             \"video_id\": \"uFojO3KGHewvWSFPQMN6wgBUMBG59xiW09\", \"objec
+             t_id\": \"4\", \"bbox\": [1662, 90, 1806, 228], \"lm\": [1728.
+             0, 164.0, 1774.0, 169.0, 1750.0, 203.0, 1709.0, 202.0, 1738.0,
+              208.0], \"confidence\": 0.8278533220291138, \"image_path\": 
+              \"736_bssd_cam_out_01_8f8bdca7d83d4622ab1b4a03993a1254.jpg\
+              ", \"timestamp\": 1726129409.301079, \"message_base64\": {\"
+              si\": {\"si_id\": \"bssd.mdo.com.vn\", \"si_name\": \"bssd.
+              mdo.com.vn\", \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6Ik
+              pXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv
+              7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\", \"si_api\": {\"endpoint\"
+              : \"https://service-mass.mdo.com.vn/api/timekeeping/camera/li
+              itless/public/event-user-time-keeping\", \"method\": \"POST\"}
+              }, \"user\": {\"user_id\": \"736\", \"user_name\": \"Nguy\\\\u1
+              ec5n Th\\\\u1ebf Ki\\\\u00ean\", \"user_group\": \"bssd.mdo.co
+              m.vn\"}, \"service_key\": \"FACE_RECOGNITION\", \"cam_info\": {
+                \"cam_id\": \"bssd_cam_out_01\", \"location\": \"HN\", \"sourc
+                e\": \"rtsp://admin:bssd2024@14.160.26.88:11055/Streaming/chann
+                els/101\", \"accessKey\": \"access123\", \"endpoint\": \"\", \"ai
+                _streaming_out\": true, \"video_event\": true}, \"ai_config\": {
+                    \"dist_type\": \"string\", \"attribute\": [\"gender\", \"age\
+                    "], \"landmark\": true, \"limitation\": 100, \"min_size\": 20,
+                     \"max_size\": 500, \"nms_threshold\": 0.5, \"conf_threshold\": 0.5}, 
+                     \"hi_config\": {\"zones\": [], \"lines\": [], \"time_interval\":
+                      30.0, \"overlap_threshold\": 0.5, \"margin\": 10.0, \"time_thresh
+                      old\": 60.0}}, \"silent_face\": \"spoof\", \"person_id\": [\"1592\
+                      ", \"1592\", \"1592\", \"1592\", \"1592\"], \"person_name\":
+                       [\"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\",
+                        \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\",
+                        \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\", 
+                        \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\",
+                         \"Tr\\\\u01b0\\\\u01a1ng \\\\u0110\\\\u1ea1i Phong\"],
+                          \"dist\": [1.7778524160385132, 1.8069922924041748, 
+                          1.8313486576080322, 1.8313486576080322, 1.8378806114196777]}]}'}"
+
+
+
+
+
+
+
+
