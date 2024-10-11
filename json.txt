@@ -258,14 +258,27 @@ TODO: analyze the image recognition data.
 ],
 [
     "1727512825396774459",
-    "2024-09-28 15:40:25.396 | INFO     | event_manager.services.v1.vss:process_ai_event:23 - metadata:
-     {'img_uuid': 'face/1727512825_14e2ca93-b6e3-46dd-9206-2fe0d9b59a81_vht_cam_01_0.jpg', 
+    "2024-09-28 15:40:25.396 | INFO   
+      | event_manager.services.v1.vss:process_ai_event:23 - metadata:
+     {'img_uuid': 'face/1727512825_14e2ca93-b6e3-4
+     6dd-9206-2fe0d9b59a81_vht_cam_01_0.jpg', 
+
      'event_type': 'FACE_RECOGNITION', 
-     'description': '{\"results\": [{\"si_id\": \"vht.mdo.com.vn\", \"group\": \"vht.mdo.com.vn\", 
-     \"access_key\": \"access123\", \"user_id\": \"3126\", \"source_id\": \"vht_cam_01\", \"video_id\": \"j9TfwH1ZdkrqHulyEz9JiCjEBio2jPHUFk\", 
-     \"object_id\": \"30\", \"bbox\": [879, 285, 924, 336], \"lm\": [893.0, 308.0, 913.0, 311.0, 901.0, 320.0, 892.0, 328.0, 907.0, 330.0],
-      \"confidence\": 0.6500086188316345, \"image_path\": \"3126_vht_cam_01_752f3493fef349d5a3f012cf0644a1f2.jpg\",
-       \"timestamp\": 1727512825.21056, \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\",
+     'description': '{\"results\": 
+     [{\"si_id\": \"vht.mdo.com.vn\",
+      \"group\": \"vht.mdo.com.vn\", 
+     \"access_key\": \"access123\", 
+     \"user_id\": \"3126\",
+      \"source_id\": \"vht_cam_01\", 
+      \"video_id\": \"j9TfwH1ZdkrqHulyEz9JiCjEBio2jPHUFk\", 
+
+     \"object_id\": \"30\", 
+     \"bbox\": [879, 285, 924, 336],
+      \"lm\": [893.0, 308.0, 913.0, 311.0, 901.0, 320.0, 892.0, 328.0, 907.0, 330.0],
+      \"confidence\": 0.6500086188316345, 
+      \"image_path\": \"3126_vht_cam_01_752f3493fef349d5a3f012cf0644a1f2.jpg\",
+       \"timestamp\": 1727512825.21056, 
+       \"message_base64\": {\"si\": {\"si_id\": \"vht.mdo.com.vn\",
         \"si_name\": \"vht.mdo.com.vn\", 
         \"si_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJCU1NEIiwiZXhwIjoxNzI5NTQyODUyfQ.Qe_ajvVuv7JV26BxzcVcz_L6Y3bdodFbiH_mezIzEqk\",
          \"si_api\": {\"endpoint\": \"https://service-mass.mdo.com.vn/api/timekeeping/camera/limitless/public/event-user-time-keeping\",
